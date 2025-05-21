@@ -1,0 +1,791 @@
+---
+title: "Fragile Abundance"
+subtitle: "When Australia's Local Production Isn’t Enough to Tame Prices"
+author: "Tam Tran"
+format:
+  revealjs:
+    theme: [default]
+    transition: slide
+    slide-number: true
+    center: true
+    toc: false
+    code-overflow: wrap
+    css: styles.css
+    incremental: false
+title-slide-attributes:
+    data-background-image: "cover_image.jpg"
+    data-background-size: cover
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(ggplot2)
+library(readr)
+library(tidyr)
+library(dplyr)
+library(lubridate)
+library(plotly)
+
+# Utility: Convert "YYYY-Q#" → Date (first month of the quarter)
+convert_quarter_to_date <- function(q_str) {
+  year <- as.integer(substr(q_str, 1, 4))
+  quarter <- as.integer(substr(q_str, 7, 7))
+  month <- (quarter - 1) * 3 + 1
+  as.Date(paste0(year, "-", month, "-01"))
+}
+
+# =============================================LOAD DATA=============================================
+# Quarterly Inflation (Australia vs OECD)
+inflation_data <- read_csv("data/YoY_Food_Inflation_AUS_OECD_2020_2024.csv") %>%
+  pivot_longer(cols = c(`Australia YoY %`, `OECD YoY %`), names_to = "Region", values_to = "YoY_Percent") %>%
+  mutate(
+    Year = as.integer(substr(Quarter, 1, 4)),
+    QNum = as.integer(substr(Quarter, 7, 7)),
+    Month = (QNum - 1) * 3 + 1,
+    QuarterDate = as.Date(paste0(Year, "-", Month, "-01")),
+    QuarterLabel = paste0(Year, "-Q", QNum),
+    Region = factor(Region),
+    YoY_Percent = as.numeric(YoY_Percent)
+  )
+
+# Domestic Food Supply vs CPI
+food_df <- read_csv("data/Food_Production_vs_Inflation_by_Quarter.csv") %>%
+  mutate(
+    QuarterDate = as.Date(paste0(substr(Quarter, 1, 4), "-", (as.integer(substr(Quarter, 7, 7)) - 1) * 3 + 1, "-01")),
+    QuarterLabel = Quarter,
+    Total_Export = as.numeric(Total_Export),
+    Total_Import = as.numeric(Total_Import),
+    Food_CPI_YoY = as.numeric(Food_CPI_YoY)
+  )
+
+# Policy Timeline + Food CPI
+policy_cpi_df <- read_csv("data/Processed_YoY_Food_CPI_Australia.csv") %>%
+  mutate(
+    QuarterLabel = TIME_PERIOD,
+    QuarterDate = convert_quarter_to_date(TIME_PERIOD)
+  )
+
+vuln_data <- read_csv("data/Final_Bar_Chart_Data___Indexed_Drivers.csv") %>%
+  rename(Factor = `Factor`, Current = `Current`, Sustainable = `Sustainable`) %>%
+  mutate(
+    PlotValue = Current - 100,
+    PctAbove = round((Current - Sustainable) / Sustainable * 100, 1),
+    FillColor = ifelse(Current < Sustainable, "Below", "Above"),
+    y_pos = seq_along(Factor)
+  )
+
+# Food CPI 2020-2025
+slope_data <- read_csv("data/Food_Category_CPI_Percent_Change_2019_2024.csv")
+
+# Category-Specific CPI (Q2/Q4 only)
+cat_yoy_data <- read_csv("data/Food_Category_YoY_Quarterly_2020_2024.csv")
+cat_yoy_summary <- cat_yoy_data %>%
+  filter(grepl("Q2|Q4", Quarter)) %>%
+  mutate(Category = recode(Category,
+                           "Fruit & Vegetables" = "Vegetables",
+                           "Meat & Seafoods" = "Meat & Seafood")) %>%
+  filter(Category %in% c("Vegetables", "Bread & Cereal", "Dairy", "Meat & Seafood")) %>%
+  group_by(Quarter, Category) %>%
+  summarise(`YoY % Change` = mean(`YoY_Change`, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate(Quarter = factor(Quarter, levels = unique(Quarter)))
+
+# PPI / Freight / Rainfall Drivers
+data <- read_csv("data/Vegetable_PPI_Freight_Rainfall_YoY_2020_2024.csv") %>%
+  mutate(
+    QuarterDate = convert_quarter_to_date(Quarter),
+    QuarterLabel = gsub("([0-9]{4})Q([1-4])", "\\1-Q\\2", Quarter)
+  )
+
+ppi_df <- data %>% select(QuarterDate, `Vegetable YoY (%)`, `PPI YoY (%)`)
+freight_df <- data %>% select(QuarterDate, `Vegetable YoY (%)`, `Freight YoY (%)`)
+rainfall_df <- data %>% select(QuarterDate, `Vegetable YoY (%)`, `Rainfall YoY (%)`)
+
+scaling_ppi <- max(ppi_df$`Vegetable YoY (%)`, na.rm = TRUE) / max(ppi_df$`PPI YoY (%)`, na.rm = TRUE)
+scaling_freight <- max(freight_df$`Vegetable YoY (%)`, na.rm = TRUE) / max(freight_df$`Freight YoY (%)`, na.rm = TRUE)
+scaling_rain <- max(rainfall_df$`Vegetable YoY (%)`, na.rm = TRUE) / max(rainfall_df$`Rainfall YoY (%)`, na.rm = TRUE)
+
+```
+
+<!-- ## 1 - Food Security Status -->
+
+<div class="custom-section-header">
+  <div class="circle">1</div>
+  <div class="section-title">Food Security Status</div>
+</div>
+
+### Quarterly Food CPI Comparison: Australia vs OECD (2020–2025)
+
+```{r}
+# Add tooltip text column
+plot_df <- inflation_data %>%
+  mutate(
+    tooltip = paste0("Quarter: ", QuarterLabel, "<br>",
+                     Region, ": ", YoY_Percent, "%")
+  )
+
+p <- ggplot(plot_df, aes(x = QuarterDate, y = YoY_Percent, fill = Region, color = Region)) +
+  geom_area(aes(fill = Region), position = "identity", alpha = 0.4) +
+  geom_line(aes(color = Region), linewidth = 0.6) +
+  geom_point(aes(color = Region, text = tooltip), size = 1) +
+  scale_fill_manual(values = c("Australia YoY %" = "#1f77b4", "OECD YoY %" = "#ff7f0e")) +
+  scale_color_manual(values = c("Australia YoY %" = "#1f77b4", "OECD YoY %" = "#ff7f0e")) +
+  scale_x_date(
+    breaks = plot_df$QuarterDate,
+    labels = plot_df$QuarterLabel,
+    expand = expansion(mult = c(0.01, 0.01))
+  ) +
+  theme_minimal(base_size = 10) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        panel.grid.minor = element_blank()) +
+  labs(x = NULL, y = "YoY % Change", fill = NULL, color = NULL)
+
+ggplotly(p, tooltip = "text") %>%
+  layout(
+    height = 500
+  )
+```
+
+Australia faced food inflation, but less severely than peers — with peaks of 11% versus global highs of 16%. While resilient, price rises still strained household budgets.
+---
+
+<div class="custom-section-header">
+  <div class="circle">1</div>
+  <div class="section-title">Food Security Status</div>
+</div>
+### Domestic Food Supply vs CPI Trends (2021–2024)
+
+```{r}
+# Calculate scaling factor for alignment (optional)
+scaling_factor <- max(food_df$Total_Export, na.rm = TRUE) / max(food_df$Food_CPI_YoY, na.rm = TRUE)
+
+# Create tooltip-enhanced dataframe
+plot_df <- food_df %>%
+  mutate(
+    ExportText = paste0("Quarter: ", QuarterLabel, "<br>Export: $", round(Total_Export, 1), "M"),
+    ImportText = paste0("Quarter: ", QuarterLabel, "<br>Import: $", round(Total_Import, 1), "M"),
+    CPIText = paste0("Quarter: ", QuarterLabel, "<br>CPI YoY: ", round(Food_CPI_YoY, 2), "%")
+  )
+
+# Optional range alignment
+export_range <- range(plot_df$Total_Export, na.rm = TRUE)
+cpi_range <- range(plot_df$Food_CPI_YoY, na.rm = TRUE)
+cpi_span <- diff(cpi_range)
+aligned_cpi_min <- min(plot_df$Food_CPI_YoY, na.rm = TRUE)
+aligned_cpi_max <- aligned_cpi_min + cpi_span
+
+# Plotly dual-axis chart
+plot_ly() %>%
+  # Export line
+  add_lines(
+    x = plot_df$QuarterDate,
+    y = plot_df$Total_Export,
+    name = "Domestic Production (Export)",
+    hovertext = plot_df$ExportText,
+    hoverinfo = "text",
+    line = list(color = "forestgreen"),
+    yaxis = "y"
+  ) %>%
+  # Import line
+  add_lines(
+    x = plot_df$QuarterDate,
+    y = plot_df$Total_Import,
+    name = "Domestic Consumption (Import)",
+    hovertext = plot_df$ImportText,
+    hoverinfo = "text",
+    line = list(color = "darkorange"),
+    yaxis = "y"
+  ) %>%
+  # CPI YoY dashed line
+  add_lines(
+    x = plot_df$QuarterDate,
+    y = plot_df$Food_CPI_YoY,
+    name = "Food Price Inflation (YoY%)",
+    hovertext = plot_df$CPIText,
+    hoverinfo = "text",
+    line = list(color = "blue", dash = "dash"),
+    yaxis = "y2"
+  ) %>%
+  layout(
+    height = 450,
+    xaxis = list(
+      #title = "Quarter",
+      tickangle = -45,
+      tickvals = plot_df$QuarterDate,
+      ticktext = plot_df$QuarterLabel
+    ),
+    yaxis = list(
+      title = "Export / Import Volume ($M)",
+      side = "left",
+      zeroline = TRUE
+    ),
+    yaxis2 = list(
+      title = "CPI YoY %",
+      overlaying = "y",
+      side = "right",
+      showgrid = FALSE,
+      tickfont = list(color = "blue"),
+      titlefont = list(color = "blue")
+    ),
+    legend = list(
+      orientation = "h",
+      x = 1,
+      xanchor = "right",
+      y = 1.1,
+      yanchor = "bottom",
+      font = list(size = 11)
+    ),
+    margin = list(l = 70, r = 70, t = 0, b = 0),
+    autosize = TRUE
+  )
+
+```
+Despite producing far more food than they consume and importing little, prices still surged. This paradox shows that strong supply alone didn’t protect Australian households from inflation.
+---
+
+<div class="custom-section-header">
+  <div class="circle">1</div>
+  <div class="section-title">Food Security Status</div>
+</div>
+<!-- Slope: 2020-Q1 vs 2025-Q1 Changes -->
+
+```{r}
+# Recode categories to match previous format
+slope_data <- slope_data %>%
+  mutate(
+    Category = recode(Category,
+                      "Fruit & Vegetables" = "Vegetables"),
+    `2019-Q4` = `2019 Value`,
+    `2024-Q4` = `2024 Value`
+  ) %>%
+  select(Category, `2019-Q4`, `2024-Q4`)
+
+# Define order
+slope_data$Category <- factor(slope_data$Category,
+                            levels = c("Vegetables", "Bread & Cereal", "Dairy", "Meat & Seafood"))
+
+# Define colors
+category_colors <- c(
+  "Bread & Cereal" = "#e41a1c",
+  "Dairy" = "#377eb8",
+  "Meat & Seafood" = "#984ea3",
+  "Vegetables" = "#4daf4a"
+)
+
+# Reshape to long format and add tooltip
+slope_df <- slope_data %>%
+  pivot_longer(cols = c(`2019-Q4`, `2024-Q4`), names_to = "Quarter", values_to = "CPI") %>%
+  mutate(
+    Quarter = factor(Quarter, levels = c("2019-Q4", "2024-Q4")),
+    Category = factor(Category, levels = rev(levels(slope_data$Category))),
+    Tooltip = paste0("Category: ", Category,
+                     "<br>Quarter: ", Quarter,
+                     "<br>CPI: ", round(CPI, 4))
+  )
+
+# Build the plot
+p <- ggplot(slope_df, aes(x = Quarter, y = CPI, group = Category, color = Category)) +
+  geom_line(linewidth = 0.6) +
+  geom_point(aes(text = Tooltip), size = 1.3) +
+  scale_color_manual(values = category_colors) +
+  scale_x_discrete(expand = expansion(add = 0.3)) +
+  labs(x = NULL, y = "CPI Index") +
+  theme_minimal(base_size = 10) +
+  theme(
+    legend.position = "none",
+    panel.grid.minor = element_blank(),
+    axis.text.x = element_text(face = "bold")
+  )
+
+# Make interactive
+p3 <- ggplotly(p, tooltip = "text") %>%
+  style(showlegend = FALSE) %>%
+  layout(height = 500, margin = list(b = 30))
+
+```
+
+<!-- YoY by Food Category (Q2 & Q4) -->
+
+```{r}
+# Prepare tooltip-enhanced data
+plot_df <- cat_yoy_summary %>%
+  mutate(
+    QuarterFormatted = gsub("([0-9]{4})Q([1-4])", "\\1-Q\\2", Quarter),
+    tooltip = paste0("Category: ", Category,
+                     "<br>Quarter: ", QuarterFormatted,
+                     "<br>YoY Change: ", round(`YoY % Change`, 1), "%")
+  )
+
+# Static ggplot
+p <- ggplot(plot_df, aes(x = QuarterFormatted, y = `YoY % Change`, group = Category, color = Category)) +
+  geom_line(size = 0.6) +
+  geom_point(aes(text = tooltip), size = 1) +
+  labs(x = NULL, y = "YoY % Change") +
+  theme_minimal(base_size = 10) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_color_manual(
+    values = category_colors,
+    name = "Category"
+  )
+
+# Convert to plotly
+p4 <- ggplotly(p, tooltip = "text") %>%
+  layout(
+    margin = list(b = 30),
+    showlegend = TRUE
+  )
+
+subplot(p3, p4, nrows = 1, shareY = FALSE, titleX = TRUE, titleY = TRUE, margin = 0.05) %>%
+  layout(
+    height = 500,
+    showlegend = TRUE,
+    legend = list(
+      orientation = "h",
+      x = 0.5,
+      y = 1.2,  # Move legend above plot (inside bounds)
+      xanchor = "left",
+      yanchor = "bottom",
+      font = list(size = 10)
+    ),
+    annotations = list(
+      list(
+        text = "<b>Category-Level CPI Index Comparison: 2019–2024</b>",
+        x = 0.22, y = 1.15,
+        xanchor = "center",
+        xref = "paper", yref = "paper",
+        showarrow = FALSE,
+        font = list(size = 16, family = "Inter, system-ui, sans-serif")
+      ),
+      list(
+        text = "<b>Quarterly YoY CPI by Food Category (Q2 & Q4 Averages)</b>",
+        x = 0.78, y = 1.15,
+        xanchor = "center",
+        xref = "paper", yref = "paper",
+        showarrow = FALSE,
+        font = list(size = 16, family = "Inter, system-ui, sans-serif")
+      )
+    ),
+    margin = list(b = 30)
+  )
+
+```
+Inflation hit unevenly — eggs, dairy, and oils spiked more than others. These category-specific pressures hint at underlying weaknesses in how food gets from farms to shelves.
+---
+
+<!-- 2 - Inflation Drivers -->
+<div class="custom-section-header">
+  <div class="circle">2</div>
+  <div class="section-title">Inflation Drivers</div>
+</div>
+### Vegetable CPI vs Manufacturing and Freight Input Costs
+
+```{r}
+# Merge data for combined plot
+plot_df <- ppi_df %>%
+  inner_join(freight_df, by = "QuarterDate", suffix = c("_ppi", "_freight")) %>%
+  mutate(
+    PPI_scaled = `PPI YoY (%)` * scaling_ppi,
+    Freight_scaled = `Freight YoY (%)` * scaling_freight,
+    Series = "Vegetable vs PPI vs Freight",
+   tooltip_veg = paste0("Quarter: ", paste0(year(QuarterDate), "-Q", quarter(QuarterDate)),
+                     "<br>Vegetable YoY: ", round(`Vegetable YoY (%)_ppi`, 1), "%"),
+   tooltip_ppi = paste0("Quarter: ", paste0(year(QuarterDate), "-Q", quarter(QuarterDate)),
+                     "<br>PPI YoY: ", round(`PPI YoY (%)`, 1), "%"),
+   tooltip_freight = paste0("Quarter: ", paste0(year(QuarterDate), "-Q", quarter(QuarterDate)),
+                         "<br>Freight YoY: ", round(`Freight YoY (%)`, 1), "%")
+  )
+
+# Use a single factor variable for color
+plot_ly() %>%
+  # 1. Vegetable YoY Bars
+  add_bars(
+    x = plot_df$QuarterDate,
+    y = plot_df$`Vegetable YoY (%)_ppi`,
+    name = "Vegetable YoY (%)",
+    hovertext = plot_df$tooltip_veg,
+    hoverinfo = "text",
+    marker = list(color = "forestgreen"),
+    yaxis = "y"
+  ) %>%
+
+  # 2. PPI Line (interactive)
+  add_lines(
+    x = plot_df$QuarterDate,
+    y = plot_df$PPI_scaled,
+    name = "PPI YoY (%)",
+    hovertext = plot_df$tooltip_ppi,
+    hoverinfo = "text",
+    line = list(color = "orange"),
+    yaxis = "y"
+  ) %>%
+
+  # 3. Freight Line (interactive)
+  add_lines(
+    x = plot_df$QuarterDate,
+    y = plot_df$Freight_scaled,
+    name = "Freight YoY (%)",
+    hovertext = plot_df$tooltip_freight,
+    hoverinfo = "text",
+    line = list(color = "purple"),
+    yaxis = "y"
+  ) %>%
+
+  # Layout settings
+  layout(
+    height = 450,
+    xaxis = list(
+      #title = "Quarter",
+      tickangle = -45,
+      tickvals = plot_df$QuarterDate,
+      ticktext = paste0(year(plot_df$QuarterDate), "-Q", quarter(plot_df$QuarterDate))
+    ),
+    yaxis = list(
+      title = "Vegetable YoY %",
+      side = "left"
+    ),
+    yaxis2 = list(
+      title = "PPI / Freight YoY % (scaled)",
+      overlaying = "y",
+      side = "right",
+      showgrid = FALSE
+    ),
+    legend = list(
+      orientation = "h",
+      x = 1,
+      y = 1.1,
+      xanchor = "right",
+      yanchor = "bottom",
+      font = list(size = 11)
+    ),
+    margin = list(l = 70, r = 70, t = 0, b = 0),
+    autosize = TRUE
+  )
+
+```
+Rising production and transport costs — including packaging, energy, and freight — pushed up food prices, especially for processed and perishable goods. This shows how cost pressures can spread through the entire supply chain.
+---
+
+<div class="custom-section-header">
+  <div class="circle">2</div>
+  <div class="section-title">Inflation Drivers</div>
+</div>
+### Vegetable CPI vs Rainfall: Lagged Effects of Climate Variability
+
+```{r}
+# Prepare data
+plot_df <- rainfall_df %>%
+  mutate(
+    year = year(QuarterDate),
+    quarter = quarter(QuarterDate),
+    quarter_label = paste0(year, "-Q", quarter),
+    tooltip_veg = paste0("Quarter: ", year, "-Q", quarter,
+                         "<br>Vegetable YoY: ", round(`Vegetable YoY (%)`, 1), "%"),
+    tooltip_rain = paste0("Quarter: ", year, "-Q", quarter,
+                          "<br>Rainfall YoY: ", round(`Rainfall YoY (%)`, 1), "%")
+  )
+
+# Axis range alignment logic (keep 0 at same relative position)
+veg_range <- c(-5, 18.5)
+rain_range <- c(-90, 250)
+
+veg_zero_ratio <- abs(veg_range[1]) / diff(veg_range)         # 0.2
+rain_span <- diff(rain_range)                                 # 340
+aligned_rain_min <- min(plot_df$`Rainfall YoY (%)`, na.rm = TRUE)
+aligned_rain_max <- aligned_rain_min + rain_span              # preserves visual alignment
+
+# Plot
+plot_ly() %>%
+  # Vegetable YoY bars
+  add_bars(
+    x = plot_df$QuarterDate,
+    y = plot_df$`Vegetable YoY (%)`,
+    name = "Vegetable YoY (%)",
+    hovertext = plot_df$tooltip_veg,
+    hoverinfo = "text",
+    marker = list(color = "forestgreen"),
+    yaxis = "y"
+  ) %>%
+  # Rainfall YoY line
+  add_lines(
+    x = plot_df$QuarterDate,
+    y = plot_df$`Rainfall YoY (%)`,
+    name = "Rainfall YoY (%)",
+    hovertext = plot_df$tooltip_rain,
+    hoverinfo = "text",
+    line = list(color = "blue"),
+    yaxis = "y2"
+  ) %>%
+  layout(
+    height = 450,
+    xaxis = list(
+      #title = "Quarter",
+      tickangle = -45,
+      tickvals = plot_df$QuarterDate,
+      ticktext = plot_df$quarter_label
+    ),
+    yaxis = list(
+      title = "Vegetable YoY %",
+      side = "left",
+      range = veg_range,
+      zeroline = TRUE
+    ),
+    yaxis2 = list(
+      title = "Rainfall YoY %",
+      overlaying = "y",
+      side = "right",
+      showgrid = FALSE,
+      range = c(aligned_rain_min, aligned_rain_max),
+      zeroline = TRUE,
+      tickfont = list(color = "blue"),
+      titlefont = list(color = "blue")
+    ),
+    legend = list(
+      orientation = "h",
+      x = 1,
+      xanchor = "right",
+      y = 1.1,
+      yanchor = "bottom",
+      font = list(size = 11)
+    ),
+    margin = list(l = 70, r = 70, t = 0, b = 0),
+    autosize = TRUE
+  )
+
+```
+
+Climate vulnerability creates delayed inflation effects: Note the 3-4 month lag between rainfall disruptions and vegetable price spikes, highlighting how weather events create persistent supply chain disruptions beyond immediate crop losses.
+---
+
+<!-- 3 - Policy Effectiveness -->
+<div class="custom-section-header">
+  <div class="circle">3</div>
+  <div class="section-title">Policy Effectiveness</div>
+</div>
+### CPI Trends and Policy Interventions (2020–2024)
+
+```{r}
+# 1. Create the policy hover text
+policy_hover_text <- function(date) {
+  policy_texts <- c()
+  if (date >= as.Date("2020-04-01") & date <= as.Date("2021-12-31")) {
+    policy_texts <- c(policy_texts, "Freight Support (2020–2021)<br>→ Lowered logistics costs")
+  }
+  if (date >= as.Date("2022-11-01") & date <= as.Date("2023-06-30")) {
+    policy_texts <- c(policy_texts, "WHM Visa Enhancement (2022–2023)<br>→ More farm workers")
+  }
+  if (date >= as.Date("2023-02-01") & date <= as.Date("2025-03-01")) {
+    policy_texts <- c(policy_texts, "ACCC Oversight (2023–2024)<br>→ Retail probe on prices")
+  }
+  paste(policy_texts, collapse = "<br>")
+}
+
+# 2. Tooltip-enhanced text column
+policy_cpi_df <- policy_cpi_df %>%
+  mutate(tooltip = paste0("Quarter: ", QuarterLabel, "<br>CPI: ", round(YoY_Food_CPI, 2), "%<br>",
+                          mapply(policy_hover_text, QuarterDate)))
+
+# 3. Define bands as Plotly shapes
+shapes_list <- list(
+  list(type = "rect", x0 = "2020-04-01", x1 = "2021-12-31", y0 = 0, y1 = 12,
+       fillcolor = "rgba(0,0,255,0.1)", line = list(width = 0)),
+  list(type = "rect", x0 = "2022-11-01", x1 = "2023-06-30", y0 = 0, y1 = 12,
+       fillcolor = "rgba(255,165,0,0.1)", line = list(width = 0)),
+  list(type = "rect", x0 = "2023-02-01", x1 = "2025-03-01", y0 = 0, y1 = 12,
+       fillcolor = "rgba(128,0,128,0.1)", line = list(width = 0)),
+  list(type = "rect", 
+     x0 = min(policy_cpi_df$QuarterDate), 
+     x1 = max(policy_cpi_df$QuarterDate),
+     y0 = 2.5, y1 = 2.7,
+     fillcolor = "rgba(0,128,0,0.3)",  # Light green shade
+     line = list(width = 0))
+
+)
+
+# 4. Final plot_ly with shapes
+plot_ly(
+  data = policy_cpi_df,
+  x = ~QuarterDate, y = ~YoY_Food_CPI,
+  type = 'scatter', mode = 'lines+markers',
+  text = ~tooltip,
+  hoverinfo = "text",
+  line = list(color = 'darkblue'),
+  marker = list(size = 2)
+) %>%
+  layout(
+      shapes = shapes_list,
+  hovermode = "closest",
+  xaxis = list(title = "", tickangle = -45),
+  yaxis = list(title = "YoY % Change"),
+  height = 500,
+  margin = list(t = 20, b = 70, l = 0, r = 0),
+
+  annotations = list(
+    list(
+      text = paste0(
+        "<b style='font-size:11px;'>🟦 OECD Food CPI (YoY)</b><br>",
+        "<span style='color:rgba(0,128,0,0.3); font-size:10px;'>▉</span> <span style='font-size:10px;'>Sustainable Target Zone (2.5–2.7%)</span><br>",
+        "<span style='color:rgba(0,0,255,0.3); font-size:10px;'>▉</span> <span style='font-size:10px;'>Freight Support</span><br>",
+        "<span style='color:rgba(255,165,0,0.3); font-size:10px;'>▉</span> <span style='font-size:10px;'>WHM Visa Enhancement</span><br>",
+        "<span style='color:rgba(128,0,128,0.3); font-size:10px;'>▉</span> <span style='font-size:10px;'>ACCC Oversight</span>"
+      ),
+      xref = "paper", yref = "paper",
+      x = 0.02, y = 0.98,
+      xanchor = "left", yanchor = "top",
+      showarrow = FALSE,
+      align = "left",
+      font = list(size = 10),
+      bgcolor = "rgba(255,255,255,0.8)",
+      bordercolor = "rgba(0,0,0,0.2)",
+      borderwidth = 0.5
+    )
+  )
+  )
+
+```
+Temporary supports brought brief relief, but prices rose again as they expired. This shows reactive policy alone can’t address deeper structural vulnerabilities.
+---
+
+<div class="custom-section-header">
+  <div class="circle">3</div>
+  <div class="section-title">Policy Effectiveness</div>
+</div>
+### Indexed Structural Vulnerability Factors in Australia’s Food System
+
+```{r}
+# First, create severity levels
+vuln_data <- vuln_data %>%
+  mutate(
+    PctAbove = round((Current - Sustainable) / Sustainable * 100, 1),
+    PlotValue = Current - 100,
+    Severity = case_when(
+      PctAbove <= 0 ~ "Safe",
+      PctAbove <= 10 ~ "Warning",
+      TRUE ~ "Alarming"
+    )
+  )
+
+# Plot with severity-based coloring
+ggplot(vuln_data, aes(x = PlotValue, y = reorder(Factor, Current), fill = Severity)) +
+  geom_col(width = 0.6) +
+  
+  # Sustainable reference line
+  geom_vline(xintercept = vuln_data$Sustainable[1] - 100,
+             color = "darkgreen", linetype = "dashed", linewidth = 1) +
+  
+  # Value labels
+  geom_text(aes(x = PlotValue + 4,
+                label = paste0(PctAbove, "% ", ifelse(PctAbove >= 0, "above", "below"), "\nsustainable")),
+            hjust = 0, size = 4.5) +
+  
+  # Annotate sustainable label
+  annotate("text", 
+           x = vuln_data$Sustainable[1] - 101,
+           y = length(vuln_data$Factor) + 0.4,
+           label = paste("Sustainable =", vuln_data$Sustainable[1]),
+           color = "darkgreen", hjust = 1, size = 4) +
+  
+  # Custom fill for severity levels
+  scale_fill_manual(
+    values = c("Safe" = "#00CC00", "Warning" = "#FFB347", "Alarming" = "#FF4500"),
+    name = "Severity Level"
+  ) +
+  
+  scale_x_continuous(
+    labels = function(x) x + 100,
+    name = "Indexed Level (2019 = 100)",
+    expand = expansion(c(0.01, 0.2))
+  ) +
+  labs(y = NULL) +
+  theme_minimal(base_size = 14) +
+  theme(legend.position = "bottom")
+
+```
+Australia’s food system remains exposed — from climate and input costs to labor gaps. To protect affordability, reform must strengthen pricing resilience, not just supply.
+---
+
+<div class="custom-section-header">
+  <div class="circle">4</div>
+  <div class="section-title">Proposed Mitigations</div>
+</div>
+
+<section data-background-image="mitigation-bg.jpg" data-background-size="cover" data-background-position="center">
+
+<div class="overlay-text">
+  <h3>Climate-Smart Farming</h3>
+  <p>Turn research into resilience<br>
+  → Scale up climate tools with subsidies and field support.</p>
+
+  <h3>Regional Food Hubs</h3>
+  <p>Build local buffers<br>
+  → Invest in regional hubs to reduce freight risk and rural delays.</p>
+
+  <h3>Transparent Food Pricing</h3>
+  <p>Expose hidden markups<br>
+  → Strengthen ACCC to trace prices from farm to shelf.</p>
+
+  <h3>Stable Seasonal Labor</h3>
+  <p>Protect farm work continuity<br>
+  → Co-fund income safety nets and fast-track harvest visas.</p>
+</div>
+</section>
+<!-- --- -->
+
+<!-- ::: {.custom-section-header} -->
+<!-- <div class="circle">5</div> -->
+<!-- <div class="section-title">Closing Insight</div> -->
+<!-- ::: -->
+
+<!-- <section data-background-image="closing-bg.jpg" data-background-size="cover" data-background-position="center"> -->
+<!-- <div class="overlay-table"> -->
+<!-- <table class="closing-table"> -->
+<!--   <thead> -->
+<!--     <tr> -->
+<!--       <th>What the Data Shows</th> -->
+<!--       <th>What Needs to Change</th> -->
+<!--     </tr> -->
+<!--   </thead> -->
+<!--   <tbody> -->
+<!--     <tr> -->
+<!--       <td>Australia didn’t face a food shortage.</td> -->
+<!--       <td>We can’t rely on production alone.</td> -->
+<!--     </tr> -->
+<!--     <tr> -->
+<!--       <td>It faced a price shock from fragile systems — in labor, logistics, and climate.</td> -->
+<!--       <td>We need long-term structural fixes.</td> -->
+<!--     </tr> -->
+<!--   </tbody> -->
+<!-- </table> -->
+<!-- </div> -->
+<!-- </section> -->
+---
+<div class="custom-section-header">
+  <div class="circle">5</div>
+  <div class="section-title">References</div>
+</div>
+
+::: {.reference-slide}
+
+- Australian Bureau of Statistics. (2024, April 24). *Consumer price index, Australia – Table 13: Group, expenditure class and selected analytical series index numbers*, seasonally adjusted, weighted average of eight capital cities. Australian Government.  
+  [https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/consumer-price-index-australia/latest-release](https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/consumer-price-index-australia/latest-release)
+
+- Australian Bureau of Statistics. (2024, April 24). *Monthly consumer price index indicator – Table 1: All groups, selected expenditure classes, Australia*; index numbers and percentage change from corresponding month of previous year, weighted average of eight capital cities. Australian Government.  
+  [https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/monthly-consumer-price-index-indicator/latest-release](https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/monthly-consumer-price-index-indicator/latest-release)
+
+- Australian Bureau of Statistics. (2024, April 26). *Producer price indexes – Table 21: Output of the transport, postal and warehousing industries, group and class index numbers*. Australian Government.  
+  [https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/producer-price-indexes-australia/latest-release](https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/producer-price-indexes-australia/latest-release)
+
+- Australian Bureau of Statistics. (2024, April 26). *Producer price indexes – Table 12: Output of the manufacturing industries, division, subdivision, group and class index numbers*. Australian Government.  
+  [https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/producer-price-indexes-australia/latest-release](https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/producer-price-indexes-australia/latest-release)
+
+- Australian Bureau of Statistics. (2024, May 2). *International trade in goods, Australia – Table 12b & Table 13b: Merchandise exports and imports, SITC (3-digit)*. Australian Government.  
+  [https://www.abs.gov.au/statistics/economy/international-trade/international-trade-goods/latest-release](https://www.abs.gov.au/statistics/economy/international-trade/international-trade-goods/latest-release)
+
+- Bureau of Meteorology. (n.d.). *Climate data online*. Australian Government.  
+  [http://www.bom.gov.au/climate/data/](http://www.bom.gov.au/climate/data/)
+
+- Organisation for Economic Co-operation and Development. (2024). *Consumer price index (CPI), Australia, quarterly data (2020–2024)* [Data set]. OECD Data Explorer.  
+  [https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_PRICES%40DF_PRICES_ALL&df[ag]=OECD.SDD.TPS&dq=AUS.Q..CPI....&pd=2020-01%2C2024-12&to[TIME_PERIOD]=false](https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_PRICES%40DF_PRICES_ALL&df[ag]=OECD.SDD.TPS&dq=AUS.Q..CPI....&pd=2020-01%2C2024-12&to[TIME_PERIOD]=false)
+
+:::
+

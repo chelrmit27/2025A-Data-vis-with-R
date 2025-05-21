@@ -1,0 +1,122 @@
+.reveal section {
+  font-size: 0.5em; /* Reduces all slide text */
+  padding: 10px;
+}
+
+.reveal .column {
+  padding: 5px;
+}
+
+.reveal pre code {
+  font-size: 0.75em; /* Smaller font for code blocks */
+}
+
+/* Title text customization */
+.reveal h1.title {
+  font-size: 5em;         
+  color: #1F509A;             
+}
+
+.reveal p.subtitle {
+  font-size: 1.5em;         
+  color: #328E6E;             
+}
+
+/* Style the author/subtitle text */
+.reveal .quarto-title-author-name {
+  font-size: 1.3em;
+  color: white;
+  margin-top: 0em;
+}
+
+/* Container with icon and heading */
+.custom-section-header {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  margin-bottom: 1em;
+}
+
+/* Circle number */
+.custom-section-header .circle {
+  width: 50px;
+  height: 50px;
+  background-color: #111;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1em;
+  flex-shrink: 0;
+}
+
+/* Heading text with underline */
+.custom-section-header .section-title {
+  font-size: 1.5em;
+  font-weight: 700;
+  border-bottom: 2px solid #111;
+  padding-bottom: 0.1em;
+}
+
+.overlay-text {
+  position: absolute;
+  top: 2.5em;
+  left: 8%;
+  width: 45%;
+  font-size: 1.3rem; 
+  line-height: 1.6;
+  padding: 1.1em;
+  border-radius: 12px;
+  font-family: 'var(--r-main-font)', sans-serif;
+}
+
+.overlay-text h3 {
+  color: #f97316;
+  font-weight: 700;
+  margin-top: 1.2em;
+  margin-bottom: 0.3em;
+  font-size: 1.2em;
+}
+
+.overlay-table {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 3em;
+}
+
+table.closing-table {
+  font-size: 1.3rem;
+  width: 80%;
+  border-collapse: collapse;
+  background-color: white;
+  font-family: var(--r-main-font, sans-serif);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+table.closing-table th {
+  background-color: #1f4e79;
+  color: white;
+  padding: 1.2em;
+  text-align: center;
+  font-size: 1.2rem;
+  width: 50%;
+}
+
+table.closing-table td {
+  padding: 1.3em;
+  border: 1px solid #ddd;
+  font-size: 1.2rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.reference-slide ul {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  padding-left: 1.5em;
+}

@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="Main_Slides_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Main_Slides_files/libs/quarto-html/tabby.min.js"></script>
+<script src="Main_Slides_files/libs/quarto-html/popper.min.js"></script>
+<script src="Main_Slides_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="Main_Slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Main_Slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="Main_Slides_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="Main_Slides_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.57">
+
+  <meta name="author" content="Tam Tran">
+  <title>Fragile Abundance</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="Main_Slides_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="Main_Slides_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="Main_Slides_files/libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="styles.css">
+  <link href="Main_Slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="Main_Slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="Main_Slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="Main_Slides_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <link href="Main_Slides_files/libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+  <script src="Main_Slides_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+  <script src="Main_Slides_files/libs/plotly-binding-4.10.4/plotly.js"></script>
+  <script src="Main_Slides_files/libs/typedarray-0.1/typedarray.min.js"></script>
+  <script src="Main_Slides_files/libs/jquery-3.5.1/jquery.min.js"></script>
+  <link href="Main_Slides_files/libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+  <script src="Main_Slides_files/libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+  <link href="Main_Slides_files/libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+  <script src="Main_Slides_files/libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-image="cover_image.jpg" data-background-size="cover" class="quarto-title-block center">
+  <h1 class="title">Fragile Abundance</h1>
+  <p class="subtitle">When Australia’s Local Production Isn’t Enough to Tame Prices</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Tam Tran 
+</div>
+</div>
+</div>
+
+</section>
+<section class="slide level2 center">
+
+<!-- ## 1 - Food Security Status -->
+<div class="custom-section-header">
+<div class="circle">
+1
+</div>
+<div class="section-title">
+Food Security Status
+</div>
+</div>
+<h3 id="quarterly-food-cpi-comparison-australia-vs-oecd-20202025">Quarterly Food CPI Comparison: Australia vs OECD (2020–2025)</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-6ea630994831cd743334" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-6ea630994831cd743334">{"x":{"data":[{"x":[17894.808000000001,17897,17899.191999999999,17984.808000000001,17987,17989.191999999999,18075.808000000001,18078,18080.191999999999,18167.808000000001,18170,18172.191999999999,18259.808000000001,18262,18264.191999999999,18350.808000000001,18353,18355.191999999999,18441.808000000001,18444,18446.191999999999,18533.808000000001,18536,18538.191999999999,18625.808000000001,18628,18630.191999999999,18715.808000000001,18718,18720.191999999999,18806.808000000001,18809,18811.191999999999,18898.808000000001,18901,18903.191999999999,18990.808000000001,18993,18995.191999999999,19080.808000000001,19083,19085.191999999999,19171.808000000001,19174,19176.191999999999,19263.808000000001,19266,19268.191999999999,19355.808000000001,19358,19360.191999999999,19445.808000000001,19448,19450.191999999999,19536.808000000001,19539,19541.191999999999,19628.808000000001,19631,19633.191999999999,19720.808000000001,19723,19725.191999999999,19811.808000000001,19814,19816.191999999999,19902.808000000001,19905,19907.191999999999,19994.808000000001,19997,19999.191999999999,20086.808000000001,20089,20091.191999999999,20091.191999999999,20089,20086.808000000001,19999.191999999999,19997,19994.808000000001,19907.191999999999,19905,19902.808000000001,19816.191999999999,19814,19811.808000000001,19725.191999999999,19723,19720.808000000001,19633.191999999999,19631,19628.808000000001,19541.191999999999,19539,19536.808000000001,19450.191999999999,19448,19445.808000000001,19360.191999999999,19358,19355.808000000001,19268.191999999999,19266,19263.808000000001,19176.191999999999,19174,19171.808000000001,19085.191999999999,19083,19080.808000000001,18995.191999999999,18993,18990.808000000001,18903.191999999999,18901,18898.808000000001,18811.191999999999,18809,18806.808000000001,18720.191999999999,18718,18715.808000000001,18630.191999999999,18628,18625.808000000001,18538.191999999999,18536,18533.808000000001,18446.191999999999,18444,18441.808000000001,18355.191999999999,18353,18350.808000000001,18264.191999999999,18262,18259.808000000001,18172.191999999999,18170,18167.808000000001,18080.191999999999,18078,18075.808000000001,17989.191999999999,17987,17984.808000000001,17899.191999999999,17897,17894.808000000001,17894.808000000001],"y":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3.673311,3.6620727351304394,3.2128702648695606,3.201632,3.2114858739130394,3.6053531260869605,3.6152069999999998,3.594217419692316,2.7648225803076838,2.743833,2.7437564004395605,2.7407295995604395,2.740653,2.7633026500869473,3.6686273499130526,3.6912769999999999,3.6860063836521761,3.4753356163478237,3.470065,3.5644307686153458,7.293256231384655,7.3876220000000004,7.4094970152888804,8.2638999847111201,8.2857749999999992,8.3343431678260664,10.275651832173933,10.32422,10.333644646956518,10.710355353043482,10.71978,10.619847466725316,6.6710535332746836,6.5711209999999998,6.5399592113777905,5.3228297886222089,5.2916679999999996,5.2009114326956887,1.5732985673043105,1.482542,1.4662136013913112,0.81355439860868894,0.79722599999999999,0.79690790225934083,0.78433839774065917,0.7840203,0.77127876904889414,0.27361503095110584,0.26087349999999998,0.31898562391301954,2.6417738760869804,2.6998859999999998,2.7432087356521557,4.4748532643478445,4.5181760000000004,4.5337716705054882,5.1500283294945124,5.1656240000000002,5.1323987961318824,3.8195182038681184,3.7862930000000001,3.766409653913052,2.9716563460869487,2.9517730000000002,2.9417309714782651,2.5403430285217352,2.5303010000000001,2.5388621330109857,2.8771518669890144,2.885713,2.8783173868444476,2.5894566131555523,2.5820609999999999,0,0],"text":"","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(31,119,180,0.4)","dash":"solid"},"fill":"toself","fillcolor":"rgba(31,119,180,0.4)","hoveron":"points","name":"Australia YoY %","legendgroup":"Australia YoY %","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[17894.808000000001,17897,17899.191999999999,17984.808000000001,17987,17989.191999999999,18075.808000000001,18078,18080.191999999999,18167.808000000001,18170,18172.191999999999,18259.808000000001,18262,18264.191999999999,18350.808000000001,18353,18355.191999999999,18441.808000000001,18444,18446.191999999999,18533.808000000001,18536,18538.191999999999,18625.808000000001,18628,18630.191999999999,18715.808000000001,18718,18720.191999999999,18806.808000000001,18809,18811.191999999999,18898.808000000001,18901,18903.191999999999,18990.808000000001,18993,18995.191999999999,19080.808000000001,19083,19085.191999999999,19171.808000000001,19174,19176.191999999999,19263.808000000001,19266,19268.191999999999,19355.808000000001,19358,19360.191999999999,19445.808000000001,19448,19450.191999999999,19536.808000000001,19539,19541.191999999999,19628.808000000001,19631,19633.191999999999,19720.808000000001,19723,19725.191999999999,19811.808000000001,19814,19816.191999999999,19902.808000000001,19905,19907.191999999999,19994.808000000001,19997,19999.191999999999,20086.808000000001,20089,20091.191999999999,20091.191999999999,20091.191999999999,20089,20086.808000000001,19999.191999999999,19997,19994.808000000001,19907.191999999999,19905,19902.808000000001,19816.191999999999,19814,19811.808000000001,19725.191999999999,19723,19720.808000000001,19633.191999999999,19631,19628.808000000001,19541.191999999999,19539,19536.808000000001,19450.191999999999,19448,19445.808000000001,19360.191999999999,19358,19355.808000000001,19268.191999999999,19266,19263.808000000001,19176.191999999999,19174,19171.808000000001,19085.191999999999,19083,19080.808000000001,18995.191999999999,18993,18990.808000000001,18903.191999999999,18901,18898.808000000001,18811.191999999999,18809,18806.808000000001,18720.191999999999,18718,18715.808000000001,18630.191999999999,18628,18625.808000000001,18538.191999999999,18536,18533.808000000001,18446.191999999999,18444,18441.808000000001,18355.191999999999,18353,18350.808000000001,18264.191999999999,18262,18259.808000000001,18172.191999999999,18170,18167.808000000001,18080.191999999999,18078,18075.808000000001,17989.191999999999,17987,17984.808000000001,17899.191999999999,17897,17894.808000000001,17894.808000000001],"y":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4.5558490000000003,4.5479085991304382,4.2305244008695624,4.2225840000000003,4.2166370325217422,3.9789319674782586,3.972985,3.9928130370988928,4.7763099629011068,4.796138,4.8126971629010917,5.467025837098908,5.4835849999999997,5.5235978394782439,7.1229431605217561,7.1629560000000003,7.2076366558260689,8.9935583441739322,9.0382390000000008,9.0917194882637151,11.204979511736285,11.258459999999999,11.343528597333298,14.6661714026667,14.751239999999999,14.778814168695639,15.88097583130436,15.90855,15.887497031304356,15.045992968695645,15.024940000000001,14.965548603076948,12.618721396923052,12.559329999999999,12.468085929777814,8.9042390702221859,8.8129950000000008,8.7365312019130759,5.6802117980869253,5.6037480000000004,5.5537735688695857,3.5562554311304142,3.506281,3.4584683733626571,1.5691716266373428,1.5213589999999999,1.5513525743999876,2.7228534256000123,2.752847,2.764223146434778,3.2189368535652223,3.2303130000000002,3.2388488862608664,3.5800351137391337,3.588571,3.6077090870329593,4.3639429129670404,4.3830809999999998,4.3278456350769456,2.1452423649230541,2.0900069999999999,2.0824006170434814,1.7783673829565185,1.770761,1.7726650617391297,1.8487719382608703,1.850676,1.8624817265934017,2.3289802734065983,2.340786,2.3379137493333344,2.2257282506666658,2.2228560000000002,0,0],"text":"","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(255,127,14,0.4)","dash":"solid"},"fill":"toself","fillcolor":"rgba(255,127,14,0.4)","hoveron":"points","name":"OECD YoY %","legendgroup":"OECD YoY %","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[17897,17987,18078,18170,18262,18353,18444,18536,18628,18718,18809,18901,18993,19083,19174,19266,19358,19448,19539,19631,19723,19814,19905,19997,20089],"y":[2.5820609999999999,2.885713,2.5303010000000001,2.9517730000000002,3.7862930000000001,5.1656240000000002,4.5181760000000004,2.6998859999999998,0.26087349999999998,0.7840203,0.79722599999999999,1.482542,5.2916679999999996,6.5711209999999998,10.71978,10.32422,8.2857749999999992,7.3876220000000004,3.470065,3.6912769999999999,2.740653,2.743833,3.6152069999999998,3.201632,3.673311],"text":"","type":"scatter","mode":"lines","line":{"width":2.2677165354330708,"color":"rgba(31,119,180,1)","dash":"solid"},"hoveron":"points","name":"Australia YoY %","legendgroup":"Australia YoY %","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[17897,17987,18078,18170,18262,18353,18444,18536,18628,18718,18809,18901,18993,19083,19174,19266,19358,19448,19539,19631,19723,19814,19905,19997,20089],"y":[2.2228560000000002,2.340786,1.850676,1.770761,2.0900069999999999,4.3830809999999998,3.588571,3.2303130000000002,2.752847,1.5213589999999999,3.506281,5.6037480000000004,8.8129950000000008,12.559329999999999,15.024940000000001,15.90855,14.751239999999999,11.258459999999999,9.0382390000000008,7.1629560000000003,5.4835849999999997,4.796138,3.972985,4.2225840000000003,4.5558490000000003],"text":"","type":"scatter","mode":"lines","line":{"width":2.2677165354330708,"color":"rgba(255,127,14,1)","dash":"solid"},"hoveron":"points","name":"OECD YoY %","legendgroup":"OECD YoY %","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[17897,17987,18078,18170,18262,18353,18444,18536,18628,18718,18809,18901,18993,19083,19174,19266,19358,19448,19539,19631,19723,19814,19905,19997,20089],"y":[2.5820609999999999,2.885713,2.5303010000000001,2.9517730000000002,3.7862930000000001,5.1656240000000002,4.5181760000000004,2.6998859999999998,0.26087349999999998,0.7840203,0.79722599999999999,1.482542,5.2916679999999996,6.5711209999999998,10.71978,10.32422,8.2857749999999992,7.3876220000000004,3.470065,3.6912769999999999,2.740653,2.743833,3.6152069999999998,3.201632,3.673311],"text":["Quarter: 2019-Q1<br>Australia YoY %: 2.582061%","Quarter: 2019-Q2<br>Australia YoY %: 2.885713%","Quarter: 2019-Q3<br>Australia YoY %: 2.530301%","Quarter: 2019-Q4<br>Australia YoY %: 2.951773%","Quarter: 2020-Q1<br>Australia YoY %: 3.786293%","Quarter: 2020-Q2<br>Australia YoY %: 5.165624%","Quarter: 2020-Q3<br>Australia YoY %: 4.518176%","Quarter: 2020-Q4<br>Australia YoY %: 2.699886%","Quarter: 2021-Q1<br>Australia YoY %: 0.2608735%","Quarter: 2021-Q2<br>Australia YoY %: 0.7840203%","Quarter: 2021-Q3<br>Australia YoY %: 0.797226%","Quarter: 2021-Q4<br>Australia YoY %: 1.482542%","Quarter: 2022-Q1<br>Australia YoY %: 5.291668%","Quarter: 2022-Q2<br>Australia YoY %: 6.571121%","Quarter: 2022-Q3<br>Australia YoY %: 10.71978%","Quarter: 2022-Q4<br>Australia YoY %: 10.32422%","Quarter: 2023-Q1<br>Australia YoY %: 8.285775%","Quarter: 2023-Q2<br>Australia YoY %: 7.387622%","Quarter: 2023-Q3<br>Australia YoY %: 3.470065%","Quarter: 2023-Q4<br>Australia YoY %: 3.691277%","Quarter: 2024-Q1<br>Australia YoY %: 2.740653%","Quarter: 2024-Q2<br>Australia YoY %: 2.743833%","Quarter: 2024-Q3<br>Australia YoY %: 3.615207%","Quarter: 2024-Q4<br>Australia YoY %: 3.201632%","Quarter: 2025-Q1<br>Australia YoY %: 3.673311%"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(31,119,180,1)","opacity":1,"size":3.7795275590551185,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(31,119,180,1)"}},"hoveron":"points","name":"Australia YoY %","legendgroup":"Australia YoY %","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[17897,17987,18078,18170,18262,18353,18444,18536,18628,18718,18809,18901,18993,19083,19174,19266,19358,19448,19539,19631,19723,19814,19905,19997,20089],"y":[2.2228560000000002,2.340786,1.850676,1.770761,2.0900069999999999,4.3830809999999998,3.588571,3.2303130000000002,2.752847,1.5213589999999999,3.506281,5.6037480000000004,8.8129950000000008,12.559329999999999,15.024940000000001,15.90855,14.751239999999999,11.258459999999999,9.0382390000000008,7.1629560000000003,5.4835849999999997,4.796138,3.972985,4.2225840000000003,4.5558490000000003],"text":["Quarter: 2019-Q1<br>OECD YoY %: 2.222856%","Quarter: 2019-Q2<br>OECD YoY %: 2.340786%","Quarter: 2019-Q3<br>OECD YoY %: 1.850676%","Quarter: 2019-Q4<br>OECD YoY %: 1.770761%","Quarter: 2020-Q1<br>OECD YoY %: 2.090007%","Quarter: 2020-Q2<br>OECD YoY %: 4.383081%","Quarter: 2020-Q3<br>OECD YoY %: 3.588571%","Quarter: 2020-Q4<br>OECD YoY %: 3.230313%","Quarter: 2021-Q1<br>OECD YoY %: 2.752847%","Quarter: 2021-Q2<br>OECD YoY %: 1.521359%","Quarter: 2021-Q3<br>OECD YoY %: 3.506281%","Quarter: 2021-Q4<br>OECD YoY %: 5.603748%","Quarter: 2022-Q1<br>OECD YoY %: 8.812995%","Quarter: 2022-Q2<br>OECD YoY %: 12.55933%","Quarter: 2022-Q3<br>OECD YoY %: 15.02494%","Quarter: 2022-Q4<br>OECD YoY %: 15.90855%","Quarter: 2023-Q1<br>OECD YoY %: 14.75124%","Quarter: 2023-Q2<br>OECD YoY %: 11.25846%","Quarter: 2023-Q3<br>OECD YoY %: 9.038239%","Quarter: 2023-Q4<br>OECD YoY %: 7.162956%","Quarter: 2024-Q1<br>OECD YoY %: 5.483585%","Quarter: 2024-Q2<br>OECD YoY %: 4.796138%","Quarter: 2024-Q3<br>OECD YoY %: 3.972985%","Quarter: 2024-Q4<br>OECD YoY %: 4.222584%","Quarter: 2025-Q1<br>OECD YoY %: 4.555849%"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,127,14,1)","opacity":1,"size":3.7795275590551185,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(255,127,14,1)"}},"hoveron":"points","name":"OECD YoY %","legendgroup":"OECD YoY %","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":29.283520132835207,"r":6.6417600664176026,"b":36.925007519659758,"l":33.872976338729771},"font":{"color":"rgba(0,0,0,1)","family":"","size":13.283520132835205},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[17872.844160000001,20113.155839999999],"tickmode":"array","ticktext":["2019-Q1","2019-Q1","2019-Q2","2019-Q2","2019-Q3","2019-Q3","2019-Q4","2019-Q4","2020-Q1","2020-Q1","2020-Q2","2020-Q2","2020-Q3","2020-Q3","2020-Q4","2020-Q4","2021-Q1","2021-Q1","2021-Q2","2021-Q2","2021-Q3","2021-Q3","2021-Q4","2021-Q4","2022-Q1","2022-Q1","2022-Q2","2022-Q2","2022-Q3","2022-Q3","2022-Q4","2022-Q4","2023-Q1","2023-Q1","2023-Q2","2023-Q2","2023-Q3","2023-Q3","2023-Q4","2023-Q4","2024-Q1","2024-Q1","2024-Q2","2024-Q2","2024-Q3","2024-Q3","2024-Q4","2024-Q4","2025-Q1","2025-Q1"],"tickvals":[17897,17897,17987,17987,18078,18078,18170,18170,18262,18262,18353,18353,18444,18444,18536,18536,18628,18628,18718,18718,18809,18809,18901,18901,18993,18993,19083,19083,19174,19174,19266,19266,19358,19358,19448,19448,19539,19539,19631,19631,19723,19723,19814,19814,19905,19905,19997,19997,20089,20089],"categoryorder":"array","categoryarray":["2019-Q1","2019-Q1","2019-Q2","2019-Q2","2019-Q3","2019-Q3","2019-Q4","2019-Q4","2020-Q1","2020-Q1","2020-Q2","2020-Q2","2020-Q3","2020-Q3","2020-Q4","2020-Q4","2021-Q1","2021-Q1","2021-Q2","2021-Q2","2021-Q3","2021-Q3","2021-Q4","2021-Q4","2022-Q1","2022-Q1","2022-Q2","2022-Q2","2022-Q3","2022-Q3","2022-Q4","2022-Q4","2023-Q1","2023-Q1","2023-Q2","2023-Q2","2023-Q3","2023-Q3","2023-Q4","2023-Q4","2024-Q1","2024-Q1","2024-Q2","2024-Q2","2024-Q3","2024-Q3","2024-Q4","2024-Q4","2025-Q1","2025-Q1"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.3208800332088013,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":10.62681610626816},"tickangle":-45,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.60379636967432737,"zeroline":false,"anchor":"y","title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":13.283520132835205}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.79542750000000007,16.703977500000001],"tickmode":"array","ticktext":["0","5","10","15"],"tickvals":[0,5,10,15],"categoryorder":"array","categoryarray":["0","5","10","15"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.3208800332088013,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":10.62681610626816},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.60379636967432737,"zeroline":false,"anchor":"x","title":{"text":"YoY % Change","font":{"color":"rgba(0,0,0,1)","family":"","size":13.283520132835205}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":10.62681610626816},"title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":13.283520132835205}}},"hovermode":"closest","barmode":"relative","height":500},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"205d4f6ced1f":{"x":{},"y":{},"fill":{},"colour":{},"type":"scatter"},"205d7843b6f5":{"x":{},"y":{},"fill":{},"colour":{}},"205d25a0cc82":{"x":{},"y":{},"fill":{},"colour":{},"text":{}}},"cur_data":"205d4f6ced1f","visdat":{"205d4f6ced1f":["function (y) ","x"],"205d7843b6f5":["function (y) ","x"],"205d25a0cc82":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Australia faced food inflation, but less severely than peers — with peaks of 11% versus global highs of 16%. While resilient, price rises still strained household budgets.</p>
+</section>
+<section class="slide level2 center">
+
+<div class="custom-section-header">
+<div class="circle">
+1
+</div>
+<div class="section-title">
+Food Security Status
+</div>
+</div>
+<h3 id="domestic-food-supply-vs-cpi-trends-20212024">Domestic Food Supply vs CPI Trends (2021–2024)</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-45579abe8c3de69df653" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-45579abe8c3de69df653">{"x":{"visdat":{"205d7c114a47":["function () ","plotlyVisDat"]},"cur_data":"205d7c114a47","attrs":{"205d7c114a47":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":["2019-01-01","2019-04-01","2019-07-01","2019-10-01","2020-01-01","2020-04-01","2020-07-01","2020-10-01","2021-01-01","2021-04-01","2021-07-01","2021-10-01","2022-01-01","2022-04-01","2022-07-01","2022-10-01","2023-01-01","2023-04-01","2023-07-01","2023-10-01","2024-01-01","2024-04-01","2024-07-01","2024-10-01","2025-01-01"],"y":[4010,4647,4728,5562,4632,4521,3777,4321,3628,4310,4700,5113,4375,5263,5235,5109,4501,5195,5548,5552,5284,6006,6388,7063,6557],"type":"scatter","mode":"lines","name":"Domestic Production (Export)","hovertext":["Quarter: 2019-Q1<br>Export: $4010M","Quarter: 2019-Q2<br>Export: $4647M","Quarter: 2019-Q3<br>Export: $4728M","Quarter: 2019-Q4<br>Export: $5562M","Quarter: 2020-Q1<br>Export: $4632M","Quarter: 2020-Q2<br>Export: $4521M","Quarter: 2020-Q3<br>Export: $3777M","Quarter: 2020-Q4<br>Export: $4321M","Quarter: 2021-Q1<br>Export: $3628M","Quarter: 2021-Q2<br>Export: $4310M","Quarter: 2021-Q3<br>Export: $4700M","Quarter: 2021-Q4<br>Export: $5113M","Quarter: 2022-Q1<br>Export: $4375M","Quarter: 2022-Q2<br>Export: $5263M","Quarter: 2022-Q3<br>Export: $5235M","Quarter: 2022-Q4<br>Export: $5109M","Quarter: 2023-Q1<br>Export: $4501M","Quarter: 2023-Q2<br>Export: $5195M","Quarter: 2023-Q3<br>Export: $5548M","Quarter: 2023-Q4<br>Export: $5552M","Quarter: 2024-Q1<br>Export: $5284M","Quarter: 2024-Q2<br>Export: $6006M","Quarter: 2024-Q3<br>Export: $6388M","Quarter: 2024-Q4<br>Export: $7063M","Quarter: 2025-Q1<br>Export: $6557M"],"hoverinfo":"text","line":{"color":"forestgreen"},"yaxis":"y","inherit":true},"205d7c114a47.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":["2019-01-01","2019-04-01","2019-07-01","2019-10-01","2020-01-01","2020-04-01","2020-07-01","2020-10-01","2021-01-01","2021-04-01","2021-07-01","2021-10-01","2022-01-01","2022-04-01","2022-07-01","2022-10-01","2023-01-01","2023-04-01","2023-07-01","2023-10-01","2024-01-01","2024-04-01","2024-07-01","2024-10-01","2025-01-01"],"y":[614,613,589,694,727,630,495,639,584,583,618,618,635,696,721,824,778,831,710,747,758,789,786,856,903],"type":"scatter","mode":"lines","name":"Domestic Consumption (Import)","hovertext":["Quarter: 2019-Q1<br>Import: $614M","Quarter: 2019-Q2<br>Import: $613M","Quarter: 2019-Q3<br>Import: $589M","Quarter: 2019-Q4<br>Import: $694M","Quarter: 2020-Q1<br>Import: $727M","Quarter: 2020-Q2<br>Import: $630M","Quarter: 2020-Q3<br>Import: $495M","Quarter: 2020-Q4<br>Import: $639M","Quarter: 2021-Q1<br>Import: $584M","Quarter: 2021-Q2<br>Import: $583M","Quarter: 2021-Q3<br>Import: $618M","Quarter: 2021-Q4<br>Import: $618M","Quarter: 2022-Q1<br>Import: $635M","Quarter: 2022-Q2<br>Import: $696M","Quarter: 2022-Q3<br>Import: $721M","Quarter: 2022-Q4<br>Import: $824M","Quarter: 2023-Q1<br>Import: $778M","Quarter: 2023-Q2<br>Import: $831M","Quarter: 2023-Q3<br>Import: $710M","Quarter: 2023-Q4<br>Import: $747M","Quarter: 2024-Q1<br>Import: $758M","Quarter: 2024-Q2<br>Import: $789M","Quarter: 2024-Q3<br>Import: $786M","Quarter: 2024-Q4<br>Import: $856M","Quarter: 2025-Q1<br>Import: $903M"],"hoverinfo":"text","line":{"color":"darkorange"},"yaxis":"y","inherit":true},"205d7c114a47.2":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":["2019-01-01","2019-04-01","2019-07-01","2019-10-01","2020-01-01","2020-04-01","2020-07-01","2020-10-01","2021-01-01","2021-04-01","2021-07-01","2021-10-01","2022-01-01","2022-04-01","2022-07-01","2022-10-01","2023-01-01","2023-04-01","2023-07-01","2023-10-01","2024-01-01","2024-04-01","2024-07-01","2024-10-01","2025-01-01"],"y":[2.3500000000000001,2.2599999999999998,2.1499999999999999,2.79,3.2200000000000002,4.1399999999999997,3.3900000000000001,2.3500000000000001,0.80000000000000004,0.62,1.3300000000000001,1.9399999999999999,4.3300000000000001,5.7999999999999998,8.9199999999999999,9.2699999999999996,7.9699999999999998,7.4800000000000004,4.8200000000000003,4.5199999999999996,3.77,3.3199999999999998,3.2999999999999998,2.96,3.3300000000000001],"type":"scatter","mode":"lines","name":"Food Price Inflation (YoY%)","hovertext":["Quarter: 2019-Q1<br>CPI YoY: 2.35%","Quarter: 2019-Q2<br>CPI YoY: 2.26%","Quarter: 2019-Q3<br>CPI YoY: 2.15%","Quarter: 2019-Q4<br>CPI YoY: 2.79%","Quarter: 2020-Q1<br>CPI YoY: 3.22%","Quarter: 2020-Q2<br>CPI YoY: 4.14%","Quarter: 2020-Q3<br>CPI YoY: 3.39%","Quarter: 2020-Q4<br>CPI YoY: 2.35%","Quarter: 2021-Q1<br>CPI YoY: 0.8%","Quarter: 2021-Q2<br>CPI YoY: 0.62%","Quarter: 2021-Q3<br>CPI YoY: 1.33%","Quarter: 2021-Q4<br>CPI YoY: 1.94%","Quarter: 2022-Q1<br>CPI YoY: 4.33%","Quarter: 2022-Q2<br>CPI YoY: 5.8%","Quarter: 2022-Q3<br>CPI YoY: 8.92%","Quarter: 2022-Q4<br>CPI YoY: 9.27%","Quarter: 2023-Q1<br>CPI YoY: 7.97%","Quarter: 2023-Q2<br>CPI YoY: 7.48%","Quarter: 2023-Q3<br>CPI YoY: 4.82%","Quarter: 2023-Q4<br>CPI YoY: 4.52%","Quarter: 2024-Q1<br>CPI YoY: 3.77%","Quarter: 2024-Q2<br>CPI YoY: 3.32%","Quarter: 2024-Q3<br>CPI YoY: 3.3%","Quarter: 2024-Q4<br>CPI YoY: 2.96%","Quarter: 2025-Q1<br>CPI YoY: 3.33%"],"hoverinfo":"text","line":{"color":"blue","dash":"dash"},"yaxis":"y2","inherit":true}},"layout":{"height":450,"margin":{"b":0,"l":70,"t":0,"r":70},"xaxis":{"domain":[0,1],"automargin":true,"tickangle":-45,"tickvals":["2019-01-01","2019-04-01","2019-07-01","2019-10-01","2020-01-01","2020-04-01","2020-07-01","2020-10-01","2021-01-01","2021-04-01","2021-07-01","2021-10-01","2022-01-01","2022-04-01","2022-07-01","2022-10-01","2023-01-01","2023-04-01","2023-07-01","2023-10-01","2024-01-01","2024-04-01","2024-07-01","2024-10-01","2025-01-01"],"ticktext":["2019-Q1","2019-Q2","2019-Q3","2019-Q4","2020-Q1","2020-Q2","2020-Q3","2020-Q4","2021-Q1","2021-Q2","2021-Q3","2021-Q4","2022-Q1","2022-Q2","2022-Q3","2022-Q4","2023-Q1","2023-Q2","2023-Q3","2023-Q4","2024-Q1","2024-Q2","2024-Q3","2024-Q4","2025-Q1"],"title":[]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Export / Import Volume ($M)","side":"left","zeroline":true},"yaxis2":{"title":"CPI YoY %","overlaying":"y","side":"right","showgrid":false,"tickfont":{"color":"blue"},"titlefont":{"color":"blue"}},"legend":{"orientation":"h","x":1,"xanchor":"right","y":1.1000000000000001,"yanchor":"bottom","font":{"size":11}},"autosize":true,"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["2019-01-01","2019-04-01","2019-07-01","2019-10-01","2020-01-01","2020-04-01","2020-07-01","2020-10-01","2021-01-01","2021-04-01","2021-07-01","2021-10-01","2022-01-01","2022-04-01","2022-07-01","2022-10-01","2023-01-01","2023-04-01","2023-07-01","2023-10-01","2024-01-01","2024-04-01","2024-07-01","2024-10-01","2025-01-01"],"y":[4010,4647,4728,5562,4632,4521,3777,4321,3628,4310,4700,5113,4375,5263,5235,5109,4501,5195,5548,5552,5284,6006,6388,7063,6557],"type":"scatter","mode":"lines","name":"Domestic Production (Export)","hovertext":["Quarter: 2019-Q1<br>Export: $4010M","Quarter: 2019-Q2<br>Export: $4647M","Quarter: 2019-Q3<br>Export: $4728M","Quarter: 2019-Q4<br>Export: $5562M","Quarter: 2020-Q1<br>Export: $4632M","Quarter: 2020-Q2<br>Export: $4521M","Quarter: 2020-Q3<br>Export: $3777M","Quarter: 2020-Q4<br>Export: $4321M","Quarter: 2021-Q1<br>Export: $3628M","Quarter: 2021-Q2<br>Export: $4310M","Quarter: 2021-Q3<br>Export: $4700M","Quarter: 2021-Q4<br>Export: $5113M","Quarter: 2022-Q1<br>Export: $4375M","Quarter: 2022-Q2<br>Export: $5263M","Quarter: 2022-Q3<br>Export: $5235M","Quarter: 2022-Q4<br>Export: $5109M","Quarter: 2023-Q1<br>Export: $4501M","Quarter: 2023-Q2<br>Export: $5195M","Quarter: 2023-Q3<br>Export: $5548M","Quarter: 2023-Q4<br>Export: $5552M","Quarter: 2024-Q1<br>Export: $5284M","Quarter: 2024-Q2<br>Export: $6006M","Quarter: 2024-Q3<br>Export: $6388M","Quarter: 2024-Q4<br>Export: $7063M","Quarter: 2025-Q1<br>Export: $6557M"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"line":{"color":"forestgreen"},"yaxis":"y","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","frame":null},{"x":["2019-01-01","2019-04-01","2019-07-01","2019-10-01","2020-01-01","2020-04-01","2020-07-01","2020-10-01","2021-01-01","2021-04-01","2021-07-01","2021-10-01","2022-01-01","2022-04-01","2022-07-01","2022-10-01","2023-01-01","2023-04-01","2023-07-01","2023-10-01","2024-01-01","2024-04-01","2024-07-01","2024-10-01","2025-01-01"],"y":[614,613,589,694,727,630,495,639,584,583,618,618,635,696,721,824,778,831,710,747,758,789,786,856,903],"type":"scatter","mode":"lines","name":"Domestic Consumption (Import)","hovertext":["Quarter: 2019-Q1<br>Import: $614M","Quarter: 2019-Q2<br>Import: $613M","Quarter: 2019-Q3<br>Import: $589M","Quarter: 2019-Q4<br>Import: $694M","Quarter: 2020-Q1<br>Import: $727M","Quarter: 2020-Q2<br>Import: $630M","Quarter: 2020-Q3<br>Import: $495M","Quarter: 2020-Q4<br>Import: $639M","Quarter: 2021-Q1<br>Import: $584M","Quarter: 2021-Q2<br>Import: $583M","Quarter: 2021-Q3<br>Import: $618M","Quarter: 2021-Q4<br>Import: $618M","Quarter: 2022-Q1<br>Import: $635M","Quarter: 2022-Q2<br>Import: $696M","Quarter: 2022-Q3<br>Import: $721M","Quarter: 2022-Q4<br>Import: $824M","Quarter: 2023-Q1<br>Import: $778M","Quarter: 2023-Q2<br>Import: $831M","Quarter: 2023-Q3<br>Import: $710M","Quarter: 2023-Q4<br>Import: $747M","Quarter: 2024-Q1<br>Import: $758M","Quarter: 2024-Q2<br>Import: $789M","Quarter: 2024-Q3<br>Import: $786M","Quarter: 2024-Q4<br>Import: $856M","Quarter: 2025-Q1<br>Import: $903M"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"line":{"color":"darkorange"},"yaxis":"y","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","frame":null},{"x":["2019-01-01","2019-04-01","2019-07-01","2019-10-01","2020-01-01","2020-04-01","2020-07-01","2020-10-01","2021-01-01","2021-04-01","2021-07-01","2021-10-01","2022-01-01","2022-04-01","2022-07-01","2022-10-01","2023-01-01","2023-04-01","2023-07-01","2023-10-01","2024-01-01","2024-04-01","2024-07-01","2024-10-01","2025-01-01"],"y":[2.3500000000000001,2.2599999999999998,2.1499999999999999,2.79,3.2200000000000002,4.1399999999999997,3.3900000000000001,2.3500000000000001,0.80000000000000004,0.62,1.3300000000000001,1.9399999999999999,4.3300000000000001,5.7999999999999998,8.9199999999999999,9.2699999999999996,7.9699999999999998,7.4800000000000004,4.8200000000000003,4.5199999999999996,3.77,3.3199999999999998,3.2999999999999998,2.96,3.3300000000000001],"type":"scatter","mode":"lines","name":"Food Price Inflation (YoY%)","hovertext":["Quarter: 2019-Q1<br>CPI YoY: 2.35%","Quarter: 2019-Q2<br>CPI YoY: 2.26%","Quarter: 2019-Q3<br>CPI YoY: 2.15%","Quarter: 2019-Q4<br>CPI YoY: 2.79%","Quarter: 2020-Q1<br>CPI YoY: 3.22%","Quarter: 2020-Q2<br>CPI YoY: 4.14%","Quarter: 2020-Q3<br>CPI YoY: 3.39%","Quarter: 2020-Q4<br>CPI YoY: 2.35%","Quarter: 2021-Q1<br>CPI YoY: 0.8%","Quarter: 2021-Q2<br>CPI YoY: 0.62%","Quarter: 2021-Q3<br>CPI YoY: 1.33%","Quarter: 2021-Q4<br>CPI YoY: 1.94%","Quarter: 2022-Q1<br>CPI YoY: 4.33%","Quarter: 2022-Q2<br>CPI YoY: 5.8%","Quarter: 2022-Q3<br>CPI YoY: 8.92%","Quarter: 2022-Q4<br>CPI YoY: 9.27%","Quarter: 2023-Q1<br>CPI YoY: 7.97%","Quarter: 2023-Q2<br>CPI YoY: 7.48%","Quarter: 2023-Q3<br>CPI YoY: 4.82%","Quarter: 2023-Q4<br>CPI YoY: 4.52%","Quarter: 2024-Q1<br>CPI YoY: 3.77%","Quarter: 2024-Q2<br>CPI YoY: 3.32%","Quarter: 2024-Q3<br>CPI YoY: 3.3%","Quarter: 2024-Q4<br>CPI YoY: 2.96%","Quarter: 2025-Q1<br>CPI YoY: 3.33%"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"line":{"color":"blue","dash":"dash"},"yaxis":"y2","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"xaxis":"x","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Despite producing far more food than they consume and importing little, prices still surged. This paradox shows that strong supply alone didn’t protect Australian households from inflation.</p>
+</section>
+<section class="slide level2 center">
+
+<div class="custom-section-header">
+<div class="circle">
+1
+</div>
+<div class="section-title">
+Food Security Status
+</div>
+</div>
+<!-- Slope: 2020-Q1 vs 2025-Q1 Changes -->
+<!-- YoY by Food Category (Q2 & Q4) -->
+<div class="cell">
+<div class="cell-output-display">
+<div id="htmlwidget-1c564178f4d2df68e57d" style="width:960px;height:500px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1c564178f4d2df68e57d">{"x":{"data":[{"x":[1,2],"y":[109.09999999999999,129],"text":"","type":"scatter","mode":"lines","line":{"width":2.2677165354330708,"color":"rgba(152,78,163,1)","dash":"solid"},"hoveron":"points","name":"Meat & Seafood","legendgroup":"Meat & Seafood","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2],"y":[108.8,136.69999999999999],"text":"","type":"scatter","mode":"lines","line":{"width":2.2677165354330708,"color":"rgba(55,126,184,1)","dash":"solid"},"hoveron":"points","name":"Dairy","legendgroup":"Dairy","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2],"y":[106.90000000000001,136.69999999999999],"text":"","type":"scatter","mode":"lines","line":{"width":2.2677165354330708,"color":"rgba(228,26,28,1)","dash":"solid"},"hoveron":"points","name":"Bread & Cereal","legendgroup":"Bread & Cereal","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2],"y":[118.2,135.19999999999999],"text":"","type":"scatter","mode":"lines","line":{"width":2.2677165354330708,"color":"rgba(77,175,74,1)","dash":"solid"},"hoveron":"points","name":"Vegetables","legendgroup":"Vegetables","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2],"y":[109.09999999999999,129],"text":["Category: Meat & Seafood<br>Quarter: 2019-Q4<br>CPI: 109.1","Category: Meat & Seafood<br>Quarter: 2024-Q4<br>CPI: 129"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(152,78,163,1)","opacity":1,"size":4.9133858267716546,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(152,78,163,1)"}},"hoveron":"points","name":"Meat & Seafood","legendgroup":"Meat & Seafood","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2],"y":[108.8,136.69999999999999],"text":["Category: Dairy<br>Quarter: 2019-Q4<br>CPI: 108.8","Category: Dairy<br>Quarter: 2024-Q4<br>CPI: 136.7"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(55,126,184,1)","opacity":1,"size":4.9133858267716546,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(55,126,184,1)"}},"hoveron":"points","name":"Dairy","legendgroup":"Dairy","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2],"y":[106.90000000000001,136.69999999999999],"text":["Category: Bread & Cereal<br>Quarter: 2019-Q4<br>CPI: 106.9","Category: Bread & Cereal<br>Quarter: 2024-Q4<br>CPI: 136.7"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(228,26,28,1)","opacity":1,"size":4.9133858267716546,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(228,26,28,1)"}},"hoveron":"points","name":"Bread & Cereal","legendgroup":"Bread & Cereal","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2],"y":[118.2,135.19999999999999],"text":["Category: Vegetables<br>Quarter: 2019-Q4<br>CPI: 118.2","Category: Vegetables<br>Quarter: 2024-Q4<br>CPI: 135.2"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(77,175,74,1)","opacity":1,"size":4.9133858267716546,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(77,175,74,1)"}},"hoveron":"points","name":"Vegetables","legendgroup":"Vegetables","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3,4,5,6,7,8,9,10,11,12],"y":[3.1181141796611533,4.1244804530305572,5.4677036066425,1.8572691109864334,-1.1747413273437433,1.017666581918383,6.0195619351943632,12.3104036873493,11.705946535381965,8.1643191834067608,3.9665295475619131,2.6180939846256233],"text":"","type":"scatter","mode":"lines","line":{"width":2.2677165354330708,"color":"rgba(228,26,28,1)","dash":"solid"},"hoveron":"points","name":"Bread & Cereal","legendgroup":"Bread & Cereal","showlegend":true,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[1,2,3,4,5,6,7,8,9,10,11,12],"y":[2.0998033240962402,5.546050619044653,6.5252935485765269,2.5049023223517199,-0.26920990200339401,1.6835774256360974,5.3838872031288938,14.711549777996433,14.868248897490467,6.3487994761014299,2.2501695950242668,-1.2164428433295345],"text":"","type":"scatter","mode":"lines","line":{"width":2.2677165354330708,"color":"rgba(55,126,184,1)","dash":"solid"},"hoveron":"points","name":"Dairy","legendgroup":"Dairy","showlegend":true,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[1,2,3,4,5,6,7,8,9,10,11,12],"y":[4.1025015181145266,5.6784550888016332,6.610639247730103,4.3898764630487834,3.1901262506145933,2.4432138267757701,6.0076989494441904,8.1244145414497844,3.6540739029927698,0.034847936491586941,-0.44605440421147463,2.5592770155866567],"text":"","type":"scatter","mode":"lines","line":{"width":2.2677165354330708,"color":"rgba(152,78,163,1)","dash":"solid"},"hoveron":"points","name":"Meat & Seafood","legendgroup":"Meat & Seafood","showlegend":true,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[1,2,3,4,5,6,7,8,9,10,11,12],"y":[5.1450469730153898,2.1230273762347767,6.5951216444124503,4.0436610146404863,2.0329104033903471,-0.85144491387011567,6.82144665063809,9.5598434969961765,2.3743565127487831,-0.17803850926377832,3.8062646070288499,6.3485046475631801],"text":"","type":"scatter","mode":"lines","line":{"width":2.2677165354330708,"color":"rgba(77,175,74,1)","dash":"solid"},"hoveron":"points","name":"Vegetables","legendgroup":"Vegetables","showlegend":true,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[1,2,3,4,5,6,7,8,9,10,11,12],"y":[3.1181141796611533,4.1244804530305572,5.4677036066425,1.8572691109864334,-1.1747413273437433,1.017666581918383,6.0195619351943632,12.3104036873493,11.705946535381965,8.1643191834067608,3.9665295475619131,2.6180939846256233],"text":["Category: Bread & Cereal<br>Quarter: 2019-Q2<br>YoY Change: 3.1%","Category: Bread & Cereal<br>Quarter: 2019-Q4<br>YoY Change: 4.1%","Category: Bread & Cereal<br>Quarter: 2020-Q2<br>YoY Change: 5.5%","Category: Bread & Cereal<br>Quarter: 2020-Q4<br>YoY Change: 1.9%","Category: Bread & Cereal<br>Quarter: 2021-Q2<br>YoY Change: -1.2%","Category: Bread & Cereal<br>Quarter: 2021-Q4<br>YoY Change: 1%","Category: Bread & Cereal<br>Quarter: 2022-Q2<br>YoY Change: 6%","Category: Bread & Cereal<br>Quarter: 2022-Q4<br>YoY Change: 12.3%","Category: Bread & Cereal<br>Quarter: 2023-Q2<br>YoY Change: 11.7%","Category: Bread & Cereal<br>Quarter: 2023-Q4<br>YoY Change: 8.2%","Category: Bread & Cereal<br>Quarter: 2024-Q2<br>YoY Change: 4%","Category: Bread & Cereal<br>Quarter: 2024-Q4<br>YoY Change: 2.6%"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(228,26,28,1)","opacity":1,"size":3.7795275590551185,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(228,26,28,1)"}},"hoveron":"points","name":"Bread & Cereal","legendgroup":"Bread & Cereal","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[1,2,3,4,5,6,7,8,9,10,11,12],"y":[2.0998033240962402,5.546050619044653,6.5252935485765269,2.5049023223517199,-0.26920990200339401,1.6835774256360974,5.3838872031288938,14.711549777996433,14.868248897490467,6.3487994761014299,2.2501695950242668,-1.2164428433295345],"text":["Category: Dairy<br>Quarter: 2019-Q2<br>YoY Change: 2.1%","Category: Dairy<br>Quarter: 2019-Q4<br>YoY Change: 5.5%","Category: Dairy<br>Quarter: 2020-Q2<br>YoY Change: 6.5%","Category: Dairy<br>Quarter: 2020-Q4<br>YoY Change: 2.5%","Category: Dairy<br>Quarter: 2021-Q2<br>YoY Change: -0.3%","Category: Dairy<br>Quarter: 2021-Q4<br>YoY Change: 1.7%","Category: Dairy<br>Quarter: 2022-Q2<br>YoY Change: 5.4%","Category: Dairy<br>Quarter: 2022-Q4<br>YoY Change: 14.7%","Category: Dairy<br>Quarter: 2023-Q2<br>YoY Change: 14.9%","Category: Dairy<br>Quarter: 2023-Q4<br>YoY Change: 6.3%","Category: Dairy<br>Quarter: 2024-Q2<br>YoY Change: 2.3%","Category: Dairy<br>Quarter: 2024-Q4<br>YoY Change: -1.2%"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(55,126,184,1)","opacity":1,"size":3.7795275590551185,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(55,126,184,1)"}},"hoveron":"points","name":"Dairy","legendgroup":"Dairy","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[1,2,3,4,5,6,7,8,9,10,11,12],"y":[4.1025015181145266,5.6784550888016332,6.610639247730103,4.3898764630487834,3.1901262506145933,2.4432138267757701,6.0076989494441904,8.1244145414497844,3.6540739029927698,0.034847936491586941,-0.44605440421147463,2.5592770155866567],"text":["Category: Meat & Seafood<br>Quarter: 2019-Q2<br>YoY Change: 4.1%","Category: Meat & Seafood<br>Quarter: 2019-Q4<br>YoY Change: 5.7%","Category: Meat & Seafood<br>Quarter: 2020-Q2<br>YoY Change: 6.6%","Category: Meat & Seafood<br>Quarter: 2020-Q4<br>YoY Change: 4.4%","Category: Meat & Seafood<br>Quarter: 2021-Q2<br>YoY Change: 3.2%","Category: Meat & Seafood<br>Quarter: 2021-Q4<br>YoY Change: 2.4%","Category: Meat & Seafood<br>Quarter: 2022-Q2<br>YoY Change: 6%","Category: Meat & Seafood<br>Quarter: 2022-Q4<br>YoY Change: 8.1%","Category: Meat & Seafood<br>Quarter: 2023-Q2<br>YoY Change: 3.7%","Category: Meat & Seafood<br>Quarter: 2023-Q4<br>YoY Change: 0%","Category: Meat & Seafood<br>Quarter: 2024-Q2<br>YoY Change: -0.4%","Category: Meat & Seafood<br>Quarter: 2024-Q4<br>YoY Change: 2.6%"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(152,78,163,1)","opacity":1,"size":3.7795275590551185,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(152,78,163,1)"}},"hoveron":"points","name":"Meat & Seafood","legendgroup":"Meat & Seafood","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[1,2,3,4,5,6,7,8,9,10,11,12],"y":[5.1450469730153898,2.1230273762347767,6.5951216444124503,4.0436610146404863,2.0329104033903471,-0.85144491387011567,6.82144665063809,9.5598434969961765,2.3743565127487831,-0.17803850926377832,3.8062646070288499,6.3485046475631801],"text":["Category: Vegetables<br>Quarter: 2019-Q2<br>YoY Change: 5.1%","Category: Vegetables<br>Quarter: 2019-Q4<br>YoY Change: 2.1%","Category: Vegetables<br>Quarter: 2020-Q2<br>YoY Change: 6.6%","Category: Vegetables<br>Quarter: 2020-Q4<br>YoY Change: 4%","Category: Vegetables<br>Quarter: 2021-Q2<br>YoY Change: 2%","Category: Vegetables<br>Quarter: 2021-Q4<br>YoY Change: -0.9%","Category: Vegetables<br>Quarter: 2022-Q2<br>YoY Change: 6.8%","Category: Vegetables<br>Quarter: 2022-Q4<br>YoY Change: 9.6%","Category: Vegetables<br>Quarter: 2023-Q2<br>YoY Change: 2.4%","Category: Vegetables<br>Quarter: 2023-Q4<br>YoY Change: -0.2%","Category: Vegetables<br>Quarter: 2024-Q2<br>YoY Change: 3.8%","Category: Vegetables<br>Quarter: 2024-Q4<br>YoY Change: 6.3%"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(77,175,74,1)","opacity":1,"size":3.7795275590551185,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(77,175,74,1)"}},"hoveron":"points","name":"Vegetables","legendgroup":"Vegetables","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null}],"layout":{"xaxis":{"domain":[0,0.45000000000000001],"automargin":true,"type":"linear","autorange":false,"range":[0.69999999999999996,2.2999999999999998],"tickmode":"array","ticktext":["2019-Q4","2024-Q4"],"tickvals":[1,2],"categoryorder":"array","categoryarray":["2019-Q4","2024-Q4"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.3208800332088013,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":10.62681610626816},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.60379636967432737,"zeroline":false,"anchor":"y","title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":13.283520132835205}},"hoverformat":".2f"},"xaxis2":{"domain":[0.55000000000000004,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,12.6],"tickmode":"array","ticktext":["2019-Q2","2019-Q4","2020-Q2","2020-Q4","2021-Q2","2021-Q4","2022-Q2","2022-Q4","2023-Q2","2023-Q4","2024-Q2","2024-Q4"],"tickvals":[1,2,3,4.0000000000000009,5,6,7.0000000000000009,8,9,10,11,12],"categoryorder":"array","categoryarray":["2019-Q2","2019-Q4","2020-Q2","2020-Q4","2021-Q2","2021-Q4","2022-Q2","2022-Q4","2023-Q2","2023-Q4","2024-Q2","2024-Q4"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.3208800332088013,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":10.62681610626816},"tickangle":-45,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.60379636967432737,"zeroline":false,"anchor":"y2","title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":13.283520132835205}},"hoverformat":".2f"},"yaxis2":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-2.0206774303705348,15.672483484531467],"tickmode":"array","ticktext":["0","5","10","15"],"tickvals":[0,5,10,14.999999999999998],"categoryorder":"array","categoryarray":["0","5","10","15"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.3208800332088013,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":10.62681610626816},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.60379636967432737,"zeroline":false,"anchor":"x2","title":{"text":"YoY % Change","font":{"color":"rgba(0,0,0,1)","family":"","size":13.283520132835205}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[105.41000000000001,138.19],"tickmode":"array","ticktext":["110","120","130"],"tickvals":[110,120,130],"categoryorder":"array","categoryarray":["110","120","130"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.3208800332088013,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":10.62681610626816},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.60379636967432737,"zeroline":false,"anchor":"x","title":{"text":"CPI Index","font":{"color":"rgba(0,0,0,1)","family":"","size":13.283520132835205}},"hoverformat":".2f"},"annotations":[{"text":"<b>Category-Level CPI Index Comparison: 2019–2024<\/b>","x":0.22,"y":1.1499999999999999,"xanchor":"center","xref":"paper","yref":"paper","showarrow":false,"font":{"size":16,"family":"Inter, system-ui, sans-serif"}},{"text":"<b>Quarterly YoY CPI by Food Category (Q2 & Q4 Averages)<\/b>","x":0.78000000000000003,"y":1.1499999999999999,"xanchor":"center","xref":"paper","yref":"paper","showarrow":false,"font":{"size":16,"family":"Inter, system-ui, sans-serif"}}],"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.45000000000000001,"y0":0,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.55000000000000004,"x1":1,"y0":0,"y1":1}],"images":[],"margin":{"t":29.283520132835207,"r":6.6417600664176026,"b":30,"l":33.872976338729771},"font":{"color":"rgba(0,0,0,1)","family":"","size":13.283520132835205},"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":10},"title":{"text":"Category","font":{"color":"rgba(0,0,0,1)","family":"","size":13.283520132835205}},"orientation":"h","x":0.5,"y":1.2,"xanchor":"left","yanchor":"bottom"},"hovermode":"closest","barmode":"relative","height":500},"attrs":{"205d4396ea96":{"x":{},"y":{},"colour":{},"type":"scatter"},"205d69034084":{"x":{},"y":{},"colour":{},"text":{}},"205d599124e1":{"x":{},"y":{},"colour":{},"type":"scatter"},"205d480c5db7":{"x":{},"y":{},"colour":{},"text":{}}},"source":"A","config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"subplot":true,"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Inflation hit unevenly — eggs, dairy, and oils spiked more than others. These category-specific pressures hint at underlying weaknesses in how food gets from farms to shelves.</p>
+</section>
+<section class="slide level2 center">
+
+<!-- 2 - Inflation Drivers -->
+<div class="custom-section-header">
+<div class="circle">
+2
+</div>
+<div class="section-title">
+Inflation Drivers
+</div>
+</div>
+<h3 id="vegetable-cpi-vs-manufacturing-and-freight-input-costs">Vegetable CPI vs Manufacturing and Freight Input Costs</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-9789f441c25162580470" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-9789f441c25162580470">{"x":{"visdat":{"205d35b40d61":["function () ","plotlyVisDat"]},"cur_data":"205d35b40d61","attrs":{"205d35b40d61":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":["2020-01-01","2020-04-01","2020-07-01","2020-10-01","2021-01-01","2021-04-01","2021-07-01","2021-10-01","2022-01-01","2022-04-01","2022-07-01","2022-10-01","2023-01-01","2023-04-01","2023-07-01","2023-10-01","2024-01-01","2024-04-01","2024-07-01","2024-10-01"],"y":[3.2729048538310934,6.5951216444124485,8.6674488850106162,4.0436610146404872,-3.2347205730448838,2.0329104033903458,-0.8179749779393064,-0.85144491387011412,6.5552458430305194,6.8214466506380935,17.081781803412564,9.5598434969961765,5.6050144844837533,2.374356512748784,-6.3610467618443574,-0.17803850926377809,-0.0547416221854094,3.8062646070288495,8.7314326825777311,6.348504647563181],"type":"bar","name":"Vegetable YoY (%)","hovertext":["Quarter: 2020-Q1<br>Vegetable YoY: 3.3%","Quarter: 2020-Q2<br>Vegetable YoY: 6.6%","Quarter: 2020-Q3<br>Vegetable YoY: 8.7%","Quarter: 2020-Q4<br>Vegetable YoY: 4%","Quarter: 2021-Q1<br>Vegetable YoY: -3.2%","Quarter: 2021-Q2<br>Vegetable YoY: 2%","Quarter: 2021-Q3<br>Vegetable YoY: -0.8%","Quarter: 2021-Q4<br>Vegetable YoY: -0.9%","Quarter: 2022-Q1<br>Vegetable YoY: 6.6%","Quarter: 2022-Q2<br>Vegetable YoY: 6.8%","Quarter: 2022-Q3<br>Vegetable YoY: 17.1%","Quarter: 2022-Q4<br>Vegetable YoY: 9.6%","Quarter: 2023-Q1<br>Vegetable YoY: 5.6%","Quarter: 2023-Q2<br>Vegetable YoY: 2.4%","Quarter: 2023-Q3<br>Vegetable YoY: -6.4%","Quarter: 2023-Q4<br>Vegetable YoY: -0.2%","Quarter: 2024-Q1<br>Vegetable YoY: -0.1%","Quarter: 2024-Q2<br>Vegetable YoY: 3.8%","Quarter: 2024-Q3<br>Vegetable YoY: 8.7%","Quarter: 2024-Q4<br>Vegetable YoY: 6.3%"],"hoverinfo":"text","marker":{"color":"forestgreen"},"yaxis":"y","inherit":true},"205d35b40d61.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":["2020-01-01","2020-04-01","2020-07-01","2020-10-01","2021-01-01","2021-04-01","2021-07-01","2021-10-01","2022-01-01","2022-04-01","2022-07-01","2022-10-01","2023-01-01","2023-04-01","2023-07-01","2023-10-01","2024-01-01","2024-04-01","2024-07-01","2024-10-01"],"y":[8.8248104649203523,7.6910560694015571,0.63862812510531874,-0.6333017854464007,-2.7385630322139694,-0.74444003995122709,8.013017917464806,11.955931495899893,14.831631780931184,17.081781803412564,15.706085807085241,13.323627174654769,6.9292365695839049,5.0435125953890276,1.0949226254509716,-0.75878685014298664,3.0925392786918744,2.8203642656437209,2.2828784045462061,6.6454891371254527],"type":"scatter","mode":"lines","name":"PPI YoY (%)","hovertext":["Quarter: 2020-Q1<br>PPI YoY: 5.8%","Quarter: 2020-Q2<br>PPI YoY: 5.1%","Quarter: 2020-Q3<br>PPI YoY: 0.4%","Quarter: 2020-Q4<br>PPI YoY: -0.4%","Quarter: 2021-Q1<br>PPI YoY: -1.8%","Quarter: 2021-Q2<br>PPI YoY: -0.5%","Quarter: 2021-Q3<br>PPI YoY: 5.3%","Quarter: 2021-Q4<br>PPI YoY: 7.9%","Quarter: 2022-Q1<br>PPI YoY: 9.8%","Quarter: 2022-Q2<br>PPI YoY: 11.2%","Quarter: 2022-Q3<br>PPI YoY: 10.3%","Quarter: 2022-Q4<br>PPI YoY: 8.8%","Quarter: 2023-Q1<br>PPI YoY: 4.6%","Quarter: 2023-Q2<br>PPI YoY: 3.3%","Quarter: 2023-Q3<br>PPI YoY: 0.7%","Quarter: 2023-Q4<br>PPI YoY: -0.5%","Quarter: 2024-Q1<br>PPI YoY: 2%","Quarter: 2024-Q2<br>PPI YoY: 1.9%","Quarter: 2024-Q3<br>PPI YoY: 1.5%","Quarter: 2024-Q4<br>PPI YoY: 4.4%"],"hoverinfo":"text","line":{"color":"orange"},"yaxis":"y","inherit":true},"205d35b40d61.2":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":["2020-01-01","2020-04-01","2020-07-01","2020-10-01","2021-01-01","2021-04-01","2021-07-01","2021-10-01","2022-01-01","2022-04-01","2022-07-01","2022-10-01","2023-01-01","2023-04-01","2023-07-01","2023-10-01","2024-01-01","2024-04-01","2024-07-01","2024-10-01"],"y":[2.6761490479320327,0.99729484907895449,-1.4328745733516062,-1.5308812165867522,-1.309879801775341,0.98935881579715934,3.9027173615675643,4.8713220648391884,6.5088163678722655,10.36078537654242,17.081781803412564,15.980645825001172,13.103860088375763,5.3355947364218652,-2.8515923054704042,2.9265088535108754,3.6985869994064533,5.8882724344946,6.9071902510282905,-1.7524177046377423],"type":"scatter","mode":"lines","name":"Freight YoY (%)","hovertext":["Quarter: 2020-Q1<br>Freight YoY: 2.2%","Quarter: 2020-Q2<br>Freight YoY: 0.8%","Quarter: 2020-Q3<br>Freight YoY: -1.2%","Quarter: 2020-Q4<br>Freight YoY: -1.2%","Quarter: 2021-Q1<br>Freight YoY: -1.1%","Quarter: 2021-Q2<br>Freight YoY: 0.8%","Quarter: 2021-Q3<br>Freight YoY: 3.1%","Quarter: 2021-Q4<br>Freight YoY: 3.9%","Quarter: 2022-Q1<br>Freight YoY: 5.2%","Quarter: 2022-Q2<br>Freight YoY: 8.3%","Quarter: 2022-Q3<br>Freight YoY: 13.7%","Quarter: 2022-Q4<br>Freight YoY: 12.9%","Quarter: 2023-Q1<br>Freight YoY: 10.5%","Quarter: 2023-Q2<br>Freight YoY: 4.3%","Quarter: 2023-Q3<br>Freight YoY: -2.3%","Quarter: 2023-Q4<br>Freight YoY: 2.4%","Quarter: 2024-Q1<br>Freight YoY: 3%","Quarter: 2024-Q2<br>Freight YoY: 4.7%","Quarter: 2024-Q3<br>Freight YoY: 5.6%","Quarter: 2024-Q4<br>Freight YoY: -1.4%"],"hoverinfo":"text","line":{"color":"purple"},"yaxis":"y","inherit":true}},"layout":{"height":450,"margin":{"b":0,"l":70,"t":0,"r":70},"xaxis":{"domain":[0,1],"automargin":true,"tickangle":-45,"tickvals":["2020-01-01","2020-04-01","2020-07-01","2020-10-01","2021-01-01","2021-04-01","2021-07-01","2021-10-01","2022-01-01","2022-04-01","2022-07-01","2022-10-01","2023-01-01","2023-04-01","2023-07-01","2023-10-01","2024-01-01","2024-04-01","2024-07-01","2024-10-01"],"ticktext":["2020-Q1","2020-Q2","2020-Q3","2020-Q4","2021-Q1","2021-Q2","2021-Q3","2021-Q4","2022-Q1","2022-Q2","2022-Q3","2022-Q4","2023-Q1","2023-Q2","2023-Q3","2023-Q4","2024-Q1","2024-Q2","2024-Q3","2024-Q4"],"title":[]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Vegetable YoY %","side":"left"},"yaxis2":{"title":"PPI / Freight YoY % (scaled)","overlaying":"y","side":"right","showgrid":false},"legend":{"orientation":"h","x":1,"y":1.1000000000000001,"xanchor":"right","yanchor":"bottom","font":{"size":11}},"autosize":true,"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["2020-01-01","2020-04-01","2020-07-01","2020-10-01","2021-01-01","2021-04-01","2021-07-01","2021-10-01","2022-01-01","2022-04-01","2022-07-01","2022-10-01","2023-01-01","2023-04-01","2023-07-01","2023-10-01","2024-01-01","2024-04-01","2024-07-01","2024-10-01"],"y":[3.2729048538310934,6.5951216444124485,8.6674488850106162,4.0436610146404872,-3.2347205730448838,2.0329104033903458,-0.8179749779393064,-0.85144491387011412,6.5552458430305194,6.8214466506380935,17.081781803412564,9.5598434969961765,5.6050144844837533,2.374356512748784,-6.3610467618443574,-0.17803850926377809,-0.0547416221854094,3.8062646070288495,8.7314326825777311,6.348504647563181],"type":"bar","name":"Vegetable YoY (%)","hovertext":["Quarter: 2020-Q1<br>Vegetable YoY: 3.3%","Quarter: 2020-Q2<br>Vegetable YoY: 6.6%","Quarter: 2020-Q3<br>Vegetable YoY: 8.7%","Quarter: 2020-Q4<br>Vegetable YoY: 4%","Quarter: 2021-Q1<br>Vegetable YoY: -3.2%","Quarter: 2021-Q2<br>Vegetable YoY: 2%","Quarter: 2021-Q3<br>Vegetable YoY: -0.8%","Quarter: 2021-Q4<br>Vegetable YoY: -0.9%","Quarter: 2022-Q1<br>Vegetable YoY: 6.6%","Quarter: 2022-Q2<br>Vegetable YoY: 6.8%","Quarter: 2022-Q3<br>Vegetable YoY: 17.1%","Quarter: 2022-Q4<br>Vegetable YoY: 9.6%","Quarter: 2023-Q1<br>Vegetable YoY: 5.6%","Quarter: 2023-Q2<br>Vegetable YoY: 2.4%","Quarter: 2023-Q3<br>Vegetable YoY: -6.4%","Quarter: 2023-Q4<br>Vegetable YoY: -0.2%","Quarter: 2024-Q1<br>Vegetable YoY: -0.1%","Quarter: 2024-Q2<br>Vegetable YoY: 3.8%","Quarter: 2024-Q3<br>Vegetable YoY: 8.7%","Quarter: 2024-Q4<br>Vegetable YoY: 6.3%"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"marker":{"color":"forestgreen","line":{"color":"rgba(31,119,180,1)"}},"yaxis":"y","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","frame":null},{"x":["2020-01-01","2020-04-01","2020-07-01","2020-10-01","2021-01-01","2021-04-01","2021-07-01","2021-10-01","2022-01-01","2022-04-01","2022-07-01","2022-10-01","2023-01-01","2023-04-01","2023-07-01","2023-10-01","2024-01-01","2024-04-01","2024-07-01","2024-10-01"],"y":[8.8248104649203523,7.6910560694015571,0.63862812510531874,-0.6333017854464007,-2.7385630322139694,-0.74444003995122709,8.013017917464806,11.955931495899893,14.831631780931184,17.081781803412564,15.706085807085241,13.323627174654769,6.9292365695839049,5.0435125953890276,1.0949226254509716,-0.75878685014298664,3.0925392786918744,2.8203642656437209,2.2828784045462061,6.6454891371254527],"type":"scatter","mode":"lines","name":"PPI YoY (%)","hovertext":["Quarter: 2020-Q1<br>PPI YoY: 5.8%","Quarter: 2020-Q2<br>PPI YoY: 5.1%","Quarter: 2020-Q3<br>PPI YoY: 0.4%","Quarter: 2020-Q4<br>PPI YoY: -0.4%","Quarter: 2021-Q1<br>PPI YoY: -1.8%","Quarter: 2021-Q2<br>PPI YoY: -0.5%","Quarter: 2021-Q3<br>PPI YoY: 5.3%","Quarter: 2021-Q4<br>PPI YoY: 7.9%","Quarter: 2022-Q1<br>PPI YoY: 9.8%","Quarter: 2022-Q2<br>PPI YoY: 11.2%","Quarter: 2022-Q3<br>PPI YoY: 10.3%","Quarter: 2022-Q4<br>PPI YoY: 8.8%","Quarter: 2023-Q1<br>PPI YoY: 4.6%","Quarter: 2023-Q2<br>PPI YoY: 3.3%","Quarter: 2023-Q3<br>PPI YoY: 0.7%","Quarter: 2023-Q4<br>PPI YoY: -0.5%","Quarter: 2024-Q1<br>PPI YoY: 2%","Quarter: 2024-Q2<br>PPI YoY: 1.9%","Quarter: 2024-Q3<br>PPI YoY: 1.5%","Quarter: 2024-Q4<br>PPI YoY: 4.4%"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"line":{"color":"orange"},"yaxis":"y","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","frame":null},{"x":["2020-01-01","2020-04-01","2020-07-01","2020-10-01","2021-01-01","2021-04-01","2021-07-01","2021-10-01","2022-01-01","2022-04-01","2022-07-01","2022-10-01","2023-01-01","2023-04-01","2023-07-01","2023-10-01","2024-01-01","2024-04-01","2024-07-01","2024-10-01"],"y":[2.6761490479320327,0.99729484907895449,-1.4328745733516062,-1.5308812165867522,-1.309879801775341,0.98935881579715934,3.9027173615675643,4.8713220648391884,6.5088163678722655,10.36078537654242,17.081781803412564,15.980645825001172,13.103860088375763,5.3355947364218652,-2.8515923054704042,2.9265088535108754,3.6985869994064533,5.8882724344946,6.9071902510282905,-1.7524177046377423],"type":"scatter","mode":"lines","name":"Freight YoY (%)","hovertext":["Quarter: 2020-Q1<br>Freight YoY: 2.2%","Quarter: 2020-Q2<br>Freight YoY: 0.8%","Quarter: 2020-Q3<br>Freight YoY: -1.2%","Quarter: 2020-Q4<br>Freight YoY: -1.2%","Quarter: 2021-Q1<br>Freight YoY: -1.1%","Quarter: 2021-Q2<br>Freight YoY: 0.8%","Quarter: 2021-Q3<br>Freight YoY: 3.1%","Quarter: 2021-Q4<br>Freight YoY: 3.9%","Quarter: 2022-Q1<br>Freight YoY: 5.2%","Quarter: 2022-Q2<br>Freight YoY: 8.3%","Quarter: 2022-Q3<br>Freight YoY: 13.7%","Quarter: 2022-Q4<br>Freight YoY: 12.9%","Quarter: 2023-Q1<br>Freight YoY: 10.5%","Quarter: 2023-Q2<br>Freight YoY: 4.3%","Quarter: 2023-Q3<br>Freight YoY: -2.3%","Quarter: 2023-Q4<br>Freight YoY: 2.4%","Quarter: 2024-Q1<br>Freight YoY: 3%","Quarter: 2024-Q2<br>Freight YoY: 4.7%","Quarter: 2024-Q3<br>Freight YoY: 5.6%","Quarter: 2024-Q4<br>Freight YoY: -1.4%"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"line":{"color":"purple"},"yaxis":"y","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"xaxis":"x","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Rising production and transport costs — including packaging, energy, and freight — pushed up food prices, especially for processed and perishable goods. This shows how cost pressures can spread through the entire supply chain.</p>
+</section>
+<section class="slide level2 center">
+
+<div class="custom-section-header">
+<div class="circle">
+2
+</div>
+<div class="section-title">
+Inflation Drivers
+</div>
+</div>
+<h3 id="vegetable-cpi-vs-rainfall-lagged-effects-of-climate-variability">Vegetable CPI vs Rainfall: Lagged Effects of Climate Variability</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-c84ca41ad89675a34f49" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-c84ca41ad89675a34f49">{"x":{"visdat":{"205d17879d32":["function () ","plotlyVisDat"]},"cur_data":"205d17879d32","attrs":{"205d17879d32":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":["2020-01-01","2020-04-01","2020-07-01","2020-10-01","2021-01-01","2021-04-01","2021-07-01","2021-10-01","2022-01-01","2022-04-01","2022-07-01","2022-10-01","2023-01-01","2023-04-01","2023-07-01","2023-10-01","2024-01-01","2024-04-01","2024-07-01","2024-10-01"],"y":[3.2729048538310934,6.5951216444124485,8.6674488850106162,4.0436610146404872,-3.2347205730448838,2.0329104033903458,-0.8179749779393064,-0.85144491387011412,6.5552458430305194,6.8214466506380935,17.081781803412564,9.5598434969961765,5.6050144844837533,2.374356512748784,-6.3610467618443574,-0.17803850926377809,-0.0547416221854094,3.8062646070288495,8.7314326825777311,6.348504647563181],"type":"bar","name":"Vegetable YoY (%)","hovertext":["Quarter: 2020-Q1<br>Vegetable YoY: 3.3%","Quarter: 2020-Q2<br>Vegetable YoY: 6.6%","Quarter: 2020-Q3<br>Vegetable YoY: 8.7%","Quarter: 2020-Q4<br>Vegetable YoY: 4%","Quarter: 2021-Q1<br>Vegetable YoY: -3.2%","Quarter: 2021-Q2<br>Vegetable YoY: 2%","Quarter: 2021-Q3<br>Vegetable YoY: -0.8%","Quarter: 2021-Q4<br>Vegetable YoY: -0.9%","Quarter: 2022-Q1<br>Vegetable YoY: 6.6%","Quarter: 2022-Q2<br>Vegetable YoY: 6.8%","Quarter: 2022-Q3<br>Vegetable YoY: 17.1%","Quarter: 2022-Q4<br>Vegetable YoY: 9.6%","Quarter: 2023-Q1<br>Vegetable YoY: 5.6%","Quarter: 2023-Q2<br>Vegetable YoY: 2.4%","Quarter: 2023-Q3<br>Vegetable YoY: -6.4%","Quarter: 2023-Q4<br>Vegetable YoY: -0.2%","Quarter: 2024-Q1<br>Vegetable YoY: -0.1%","Quarter: 2024-Q2<br>Vegetable YoY: 3.8%","Quarter: 2024-Q3<br>Vegetable YoY: 8.7%","Quarter: 2024-Q4<br>Vegetable YoY: 6.3%"],"hoverinfo":"text","marker":{"color":"forestgreen"},"yaxis":"y","inherit":true},"205d17879d32.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":["2020-01-01","2020-04-01","2020-07-01","2020-10-01","2021-01-01","2021-04-01","2021-07-01","2021-10-01","2022-01-01","2022-04-01","2022-07-01","2022-10-01","2023-01-01","2023-04-01","2023-07-01","2023-10-01","2024-01-01","2024-04-01","2024-07-01","2024-10-01"],"y":[224.37981180496155,-5.2881355932203444,45.86583463338534,21.394984326018829,-21.149789029535871,38.940586972083047,15.187165775401068,131.18140735958684,83.979933110367909,1.5455950540958163,37.604456824512525,-45.518011728567437,-72.732230503544798,-11.618467782851347,-45.344129554655865,-6.5094823167606393,120.13333333333338,-42.881745120551088,56.543209876543223,57.730263157894754],"type":"scatter","mode":"lines","name":"Rainfall YoY (%)","hovertext":["Quarter: 2020-Q1<br>Rainfall YoY: 224.4%","Quarter: 2020-Q2<br>Rainfall YoY: -5.3%","Quarter: 2020-Q3<br>Rainfall YoY: 45.9%","Quarter: 2020-Q4<br>Rainfall YoY: 21.4%","Quarter: 2021-Q1<br>Rainfall YoY: -21.1%","Quarter: 2021-Q2<br>Rainfall YoY: 38.9%","Quarter: 2021-Q3<br>Rainfall YoY: 15.2%","Quarter: 2021-Q4<br>Rainfall YoY: 131.2%","Quarter: 2022-Q1<br>Rainfall YoY: 84%","Quarter: 2022-Q2<br>Rainfall YoY: 1.5%","Quarter: 2022-Q3<br>Rainfall YoY: 37.6%","Quarter: 2022-Q4<br>Rainfall YoY: -45.5%","Quarter: 2023-Q1<br>Rainfall YoY: -72.7%","Quarter: 2023-Q2<br>Rainfall YoY: -11.6%","Quarter: 2023-Q3<br>Rainfall YoY: -45.3%","Quarter: 2023-Q4<br>Rainfall YoY: -6.5%","Quarter: 2024-Q1<br>Rainfall YoY: 120.1%","Quarter: 2024-Q2<br>Rainfall YoY: -42.9%","Quarter: 2024-Q3<br>Rainfall YoY: 56.5%","Quarter: 2024-Q4<br>Rainfall YoY: 57.7%"],"hoverinfo":"text","line":{"color":"blue"},"yaxis":"y2","inherit":true}},"layout":{"height":450,"margin":{"b":0,"l":70,"t":0,"r":70},"xaxis":{"domain":[0,1],"automargin":true,"tickangle":-45,"tickvals":["2020-01-01","2020-04-01","2020-07-01","2020-10-01","2021-01-01","2021-04-01","2021-07-01","2021-10-01","2022-01-01","2022-04-01","2022-07-01","2022-10-01","2023-01-01","2023-04-01","2023-07-01","2023-10-01","2024-01-01","2024-04-01","2024-07-01","2024-10-01"],"ticktext":["2020-Q1","2020-Q2","2020-Q3","2020-Q4","2021-Q1","2021-Q2","2021-Q3","2021-Q4","2022-Q1","2022-Q2","2022-Q3","2022-Q4","2023-Q1","2023-Q2","2023-Q3","2023-Q4","2024-Q1","2024-Q2","2024-Q3","2024-Q4"],"title":[]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Vegetable YoY %","side":"left","range":[-5,18.5],"zeroline":true},"yaxis2":{"title":"Rainfall YoY %","overlaying":"y","side":"right","showgrid":false,"range":[-72.732230503544798,267.26776949645523],"zeroline":true,"tickfont":{"color":"blue"},"titlefont":{"color":"blue"}},"legend":{"orientation":"h","x":1,"xanchor":"right","y":1.1000000000000001,"yanchor":"bottom","font":{"size":11}},"autosize":true,"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["2020-01-01","2020-04-01","2020-07-01","2020-10-01","2021-01-01","2021-04-01","2021-07-01","2021-10-01","2022-01-01","2022-04-01","2022-07-01","2022-10-01","2023-01-01","2023-04-01","2023-07-01","2023-10-01","2024-01-01","2024-04-01","2024-07-01","2024-10-01"],"y":[3.2729048538310934,6.5951216444124485,8.6674488850106162,4.0436610146404872,-3.2347205730448838,2.0329104033903458,-0.8179749779393064,-0.85144491387011412,6.5552458430305194,6.8214466506380935,17.081781803412564,9.5598434969961765,5.6050144844837533,2.374356512748784,-6.3610467618443574,-0.17803850926377809,-0.0547416221854094,3.8062646070288495,8.7314326825777311,6.348504647563181],"type":"bar","name":"Vegetable YoY (%)","hovertext":["Quarter: 2020-Q1<br>Vegetable YoY: 3.3%","Quarter: 2020-Q2<br>Vegetable YoY: 6.6%","Quarter: 2020-Q3<br>Vegetable YoY: 8.7%","Quarter: 2020-Q4<br>Vegetable YoY: 4%","Quarter: 2021-Q1<br>Vegetable YoY: -3.2%","Quarter: 2021-Q2<br>Vegetable YoY: 2%","Quarter: 2021-Q3<br>Vegetable YoY: -0.8%","Quarter: 2021-Q4<br>Vegetable YoY: -0.9%","Quarter: 2022-Q1<br>Vegetable YoY: 6.6%","Quarter: 2022-Q2<br>Vegetable YoY: 6.8%","Quarter: 2022-Q3<br>Vegetable YoY: 17.1%","Quarter: 2022-Q4<br>Vegetable YoY: 9.6%","Quarter: 2023-Q1<br>Vegetable YoY: 5.6%","Quarter: 2023-Q2<br>Vegetable YoY: 2.4%","Quarter: 2023-Q3<br>Vegetable YoY: -6.4%","Quarter: 2023-Q4<br>Vegetable YoY: -0.2%","Quarter: 2024-Q1<br>Vegetable YoY: -0.1%","Quarter: 2024-Q2<br>Vegetable YoY: 3.8%","Quarter: 2024-Q3<br>Vegetable YoY: 8.7%","Quarter: 2024-Q4<br>Vegetable YoY: 6.3%"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"marker":{"color":"forestgreen","line":{"color":"rgba(31,119,180,1)"}},"yaxis":"y","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","frame":null},{"x":["2020-01-01","2020-04-01","2020-07-01","2020-10-01","2021-01-01","2021-04-01","2021-07-01","2021-10-01","2022-01-01","2022-04-01","2022-07-01","2022-10-01","2023-01-01","2023-04-01","2023-07-01","2023-10-01","2024-01-01","2024-04-01","2024-07-01","2024-10-01"],"y":[224.37981180496155,-5.2881355932203444,45.86583463338534,21.394984326018829,-21.149789029535871,38.940586972083047,15.187165775401068,131.18140735958684,83.979933110367909,1.5455950540958163,37.604456824512525,-45.518011728567437,-72.732230503544798,-11.618467782851347,-45.344129554655865,-6.5094823167606393,120.13333333333338,-42.881745120551088,56.543209876543223,57.730263157894754],"type":"scatter","mode":"lines","name":"Rainfall YoY (%)","hovertext":["Quarter: 2020-Q1<br>Rainfall YoY: 224.4%","Quarter: 2020-Q2<br>Rainfall YoY: -5.3%","Quarter: 2020-Q3<br>Rainfall YoY: 45.9%","Quarter: 2020-Q4<br>Rainfall YoY: 21.4%","Quarter: 2021-Q1<br>Rainfall YoY: -21.1%","Quarter: 2021-Q2<br>Rainfall YoY: 38.9%","Quarter: 2021-Q3<br>Rainfall YoY: 15.2%","Quarter: 2021-Q4<br>Rainfall YoY: 131.2%","Quarter: 2022-Q1<br>Rainfall YoY: 84%","Quarter: 2022-Q2<br>Rainfall YoY: 1.5%","Quarter: 2022-Q3<br>Rainfall YoY: 37.6%","Quarter: 2022-Q4<br>Rainfall YoY: -45.5%","Quarter: 2023-Q1<br>Rainfall YoY: -72.7%","Quarter: 2023-Q2<br>Rainfall YoY: -11.6%","Quarter: 2023-Q3<br>Rainfall YoY: -45.3%","Quarter: 2023-Q4<br>Rainfall YoY: -6.5%","Quarter: 2024-Q1<br>Rainfall YoY: 120.1%","Quarter: 2024-Q2<br>Rainfall YoY: -42.9%","Quarter: 2024-Q3<br>Rainfall YoY: 56.5%","Quarter: 2024-Q4<br>Rainfall YoY: 57.7%"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"line":{"color":"blue"},"yaxis":"y2","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Climate vulnerability creates delayed inflation effects: Note the 3-4 month lag between rainfall disruptions and vegetable price spikes, highlighting how weather events create persistent supply chain disruptions beyond immediate crop losses.</p>
+</section>
+<section class="slide level2 center">
+
+<!-- 3 - Policy Effectiveness -->
+<div class="custom-section-header">
+<div class="circle">
+3
+</div>
+<div class="section-title">
+Policy Effectiveness
+</div>
+</div>
+<h3 id="cpi-trends-and-policy-interventions-20202024">CPI Trends and Policy Interventions (2020–2024)</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-79b2b0b17b61539edc0f" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-79b2b0b17b61539edc0f">{"x":{"visdat":{"205d401750f0":["function () ","plotlyVisDat"]},"cur_data":"205d401750f0","attrs":{"205d401750f0":{"x":{},"y":{},"mode":"lines+markers","text":{},"hoverinfo":"text","line":{"color":"darkblue"},"marker":{"size":2},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"height":500,"margin":{"b":70,"l":0,"t":20,"r":0},"shapes":[{"type":"rect","x0":"2020-04-01","x1":"2021-12-31","y0":0,"y1":12,"fillcolor":"rgba(0,0,255,0.1)","line":{"width":0}},{"type":"rect","x0":"2022-11-01","x1":"2023-06-30","y0":0,"y1":12,"fillcolor":"rgba(255,165,0,0.1)","line":{"width":0}},{"type":"rect","x0":"2023-02-01","x1":"2025-03-01","y0":0,"y1":12,"fillcolor":"rgba(128,0,128,0.1)","line":{"width":0}},{"type":"rect","x0":"2019-01-01","x1":"2025-01-01","y0":2.5,"y1":2.7000000000000002,"fillcolor":"rgba(0,128,0,0.3)","line":{"width":0}}],"hovermode":"closest","xaxis":{"domain":[0,1],"automargin":true,"title":"","tickangle":-45},"yaxis":{"domain":[0,1],"automargin":true,"title":"YoY % Change"},"annotations":[{"text":"<b style='font-size:11px;'>🟦 OECD Food CPI (YoY)<\/b><br><span style='color:rgba(0,128,0,0.3); font-size:10px;'>▉<\/span> <span style='font-size:10px;'>Sustainable Target Zone (2.5–2.7%)<\/span><br><span style='color:rgba(0,0,255,0.3); font-size:10px;'>▉<\/span> <span style='font-size:10px;'>Freight Support<\/span><br><span style='color:rgba(255,165,0,0.3); font-size:10px;'>▉<\/span> <span style='font-size:10px;'>WHM Visa Enhancement<\/span><br><span style='color:rgba(128,0,128,0.3); font-size:10px;'>▉<\/span> <span style='font-size:10px;'>ACCC Oversight<\/span>","xref":"paper","yref":"paper","x":0.02,"y":0.97999999999999998,"xanchor":"left","yanchor":"top","showarrow":false,"align":"left","font":{"size":10},"bgcolor":"rgba(255,255,255,0.8)","bordercolor":"rgba(0,0,0,0.2)","borderwidth":0.5}],"showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["2019-01-01","2019-04-01","2019-07-01","2019-10-01","2020-01-01","2020-04-01","2020-07-01","2020-10-01","2021-01-01","2021-04-01","2021-07-01","2021-10-01","2022-01-01","2022-04-01","2022-07-01","2022-10-01","2023-01-01","2023-04-01","2023-07-01","2023-10-01","2024-01-01","2024-04-01","2024-07-01","2024-10-01","2025-01-01"],"y":[2.5820609999999999,2.885713,2.5303010000000001,2.9517730000000002,3.7862930000000001,5.1656240000000002,4.5181760000000004,2.6998859999999998,0.26087349999999998,0.7840203,0.79722599999999999,1.482542,5.2916679999999996,6.5711209999999998,10.71978,10.32422,8.2857749999999992,7.3876220000000004,3.470065,3.6912769999999999,2.740653,2.743833,3.6152069999999998,3.201632,3.673311],"mode":"lines+markers","text":["Quarter: 2019-Q1<br>CPI: 2.58%<br>","Quarter: 2019-Q2<br>CPI: 2.89%<br>","Quarter: 2019-Q3<br>CPI: 2.53%<br>","Quarter: 2019-Q4<br>CPI: 2.95%<br>","Quarter: 2020-Q1<br>CPI: 3.79%<br>","Quarter: 2020-Q2<br>CPI: 5.17%<br>Freight Support (2020–2021)<br>→ Lowered logistics costs","Quarter: 2020-Q3<br>CPI: 4.52%<br>Freight Support (2020–2021)<br>→ Lowered logistics costs","Quarter: 2020-Q4<br>CPI: 2.7%<br>Freight Support (2020–2021)<br>→ Lowered logistics costs","Quarter: 2021-Q1<br>CPI: 0.26%<br>Freight Support (2020–2021)<br>→ Lowered logistics costs","Quarter: 2021-Q2<br>CPI: 0.78%<br>Freight Support (2020–2021)<br>→ Lowered logistics costs","Quarter: 2021-Q3<br>CPI: 0.8%<br>Freight Support (2020–2021)<br>→ Lowered logistics costs","Quarter: 2021-Q4<br>CPI: 1.48%<br>Freight Support (2020–2021)<br>→ Lowered logistics costs","Quarter: 2022-Q1<br>CPI: 5.29%<br>","Quarter: 2022-Q2<br>CPI: 6.57%<br>","Quarter: 2022-Q3<br>CPI: 10.72%<br>","Quarter: 2022-Q4<br>CPI: 10.32%<br>","Quarter: 2023-Q1<br>CPI: 8.29%<br>WHM Visa Enhancement (2022–2023)<br>→ More farm workers","Quarter: 2023-Q2<br>CPI: 7.39%<br>WHM Visa Enhancement (2022–2023)<br>→ More farm workers<br>ACCC Oversight (2023–2024)<br>→ Retail probe on prices","Quarter: 2023-Q3<br>CPI: 3.47%<br>ACCC Oversight (2023–2024)<br>→ Retail probe on prices","Quarter: 2023-Q4<br>CPI: 3.69%<br>ACCC Oversight (2023–2024)<br>→ Retail probe on prices","Quarter: 2024-Q1<br>CPI: 2.74%<br>ACCC Oversight (2023–2024)<br>→ Retail probe on prices","Quarter: 2024-Q2<br>CPI: 2.74%<br>ACCC Oversight (2023–2024)<br>→ Retail probe on prices","Quarter: 2024-Q3<br>CPI: 3.62%<br>ACCC Oversight (2023–2024)<br>→ Retail probe on prices","Quarter: 2024-Q4<br>CPI: 3.2%<br>ACCC Oversight (2023–2024)<br>→ Retail probe on prices","Quarter: 2025-Q1<br>CPI: 3.67%<br>ACCC Oversight (2023–2024)<br>→ Retail probe on prices"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"line":{"color":"darkblue"},"marker":{"color":"rgba(31,119,180,1)","size":2,"line":{"color":"rgba(31,119,180,1)"}},"type":"scatter","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Temporary supports brought brief relief, but prices rose again as they expired. This shows reactive policy alone can’t address deeper structural vulnerabilities.</p>
+</section>
+<section class="slide level2 center">
+
+<div class="custom-section-header">
+<div class="circle">
+3
+</div>
+<div class="section-title">
+Policy Effectiveness
+</div>
+</div>
+<h3 id="indexed-structural-vulnerability-factors-in-australias-food-system">Indexed Structural Vulnerability Factors in Australia’s Food System</h3>
+
+<img data-src="Main_Slides_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"><p>Australia’s food system remains exposed — from climate and input costs to labor gaps. To protect affordability, reform must strengthen pricing resilience, not just supply.</p>
+</section>
+<section class="slide level2 center">
+
+<div class="custom-section-header">
+<div class="circle">
+4
+</div>
+<div class="section-title">
+Proposed Mitigations
+</div>
+</div>
+<section data-background-image="mitigation-bg.jpg" data-background-size="cover" data-background-position="center">
+<div class="overlay-text">
+<h3>
+Climate-Smart Farming
+</h3>
+<p>
+Turn research into resilience<br> → Scale up climate tools with subsidies and field support.
+</p>
+<h3>
+Regional Food Hubs
+</h3>
+<p>
+Build local buffers<br> → Invest in regional hubs to reduce freight risk and rural delays.
+</p>
+<h3>
+Transparent Food Pricing
+</h3>
+<p>
+Expose hidden markups<br> → Strengthen ACCC to trace prices from farm to shelf.
+</p>
+<h3>
+Stable Seasonal Labor
+</h3>
+<p>
+Protect farm work continuity<br> → Co-fund income safety nets and fast-track harvest visas.
+</p>
+</div>
+</section>
+<!-- --- -->
+<!-- ::: {.custom-section-header} -->
+<!-- <div class="circle">5</div> -->
+<!-- <div class="section-title">Closing Insight</div> -->
+<!-- ::: -->
+<!-- <section data-background-image="closing-bg.jpg" data-background-size="cover" data-background-position="center"> -->
+<!-- <div class="overlay-table"> -->
+<!-- <table class="closing-table"> -->
+<!--   <thead> -->
+<!--     <tr> -->
+<!--       <th>What the Data Shows</th> -->
+<!--       <th>What Needs to Change</th> -->
+<!--     </tr> -->
+<!--   </thead> -->
+<!--   <tbody> -->
+<!--     <tr> -->
+<!--       <td>Australia didn’t face a food shortage.</td> -->
+<!--       <td>We can’t rely on production alone.</td> -->
+<!--     </tr> -->
+<!--     <tr> -->
+<!--       <td>It faced a price shock from fragile systems — in labor, logistics, and climate.</td> -->
+<!--       <td>We need long-term structural fixes.</td> -->
+<!--     </tr> -->
+<!--   </tbody> -->
+<!-- </table> -->
+<!-- </div> -->
+<!-- </section> -->
+</section>
+<section class="slide level2 center">
+
+<div class="custom-section-header">
+<div class="circle">
+5
+</div>
+<div class="section-title">
+References
+</div>
+</div>
+<div class="reference-slide">
+<ul>
+<li><p>Australian Bureau of Statistics. (2024, April 24). <em>Consumer price index, Australia – Table 13: Group, expenditure class and selected analytical series index numbers</em>, seasonally adjusted, weighted average of eight capital cities. Australian Government.<br>
+<a href="https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/consumer-price-index-australia/latest-release">https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/consumer-price-index-australia/latest-release</a></p></li>
+<li><p>Australian Bureau of Statistics. (2024, April 24). <em>Monthly consumer price index indicator – Table 1: All groups, selected expenditure classes, Australia</em>; index numbers and percentage change from corresponding month of previous year, weighted average of eight capital cities. Australian Government.<br>
+<a href="https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/monthly-consumer-price-index-indicator/latest-release">https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/monthly-consumer-price-index-indicator/latest-release</a></p></li>
+<li><p>Australian Bureau of Statistics. (2024, April 26). <em>Producer price indexes – Table 21: Output of the transport, postal and warehousing industries, group and class index numbers</em>. Australian Government.<br>
+<a href="https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/producer-price-indexes-australia/latest-release">https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/producer-price-indexes-australia/latest-release</a></p></li>
+<li><p>Australian Bureau of Statistics. (2024, April 26). <em>Producer price indexes – Table 12: Output of the manufacturing industries, division, subdivision, group and class index numbers</em>. Australian Government.<br>
+<a href="https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/producer-price-indexes-australia/latest-release">https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/producer-price-indexes-australia/latest-release</a></p></li>
+<li><p>Australian Bureau of Statistics. (2024, May 2). <em>International trade in goods, Australia – Table 12b &amp; Table 13b: Merchandise exports and imports, SITC (3-digit)</em>. Australian Government.<br>
+<a href="https://www.abs.gov.au/statistics/economy/international-trade/international-trade-goods/latest-release">https://www.abs.gov.au/statistics/economy/international-trade/international-trade-goods/latest-release</a></p></li>
+<li><p>Bureau of Meteorology. (n.d.). <em>Climate data online</em>. Australian Government.<br>
+<a href="http://www.bom.gov.au/climate/data/">http://www.bom.gov.au/climate/data/</a></p></li>
+<li><p>Organisation for Economic Co-operation and Development. (2024). <em>Consumer price index (CPI), Australia, quarterly data (2020–2024)</em> [Data set]. OECD Data Explorer.<br>
+<a href="https://data-explorer.oecd.org/vis?df%5Bds%5D=dsDisseminateFinalDMZ&amp;df%5Bid%5D=DSD_PRICES%40DF_PRICES_ALL&amp;df%5Bag%5D=OECD.SDD.TPS&amp;dq=AUS.Q..CPI....&amp;pd=2020-01%2C2024-12&amp;to%5BTIME_PERIOD%5D=false">https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&amp;df[id]=DSD_PRICES%40DF_PRICES_ALL&amp;df[ag]=OECD.SDD.TPS&amp;dq=AUS.Q..CPI….&amp;pd=2020-01%2C2024-12&amp;to[TIME_PERIOD]=false</a></p></li>
+</ul>
+</div>
+<div class="quarto-auto-generated-content">
+<div class="footer footer-default">
+
+</div>
+</div>
+</section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="Main_Slides_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="Main_Slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="Main_Slides_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="Main_Slides_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="Main_Slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="Main_Slides_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="Main_Slides_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="Main_Slides_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="Main_Slides_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="Main_Slides_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>
