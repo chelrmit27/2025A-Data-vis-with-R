@@ -766,25 +766,25 @@ Australia’s food system remains exposed — from climate and input costs to la
 
 ::: {.reference-slide}
 
-- Australian Bureau of Statistics. (2024, April 24). *Consumer price index, Australia – Table 13: Group, expenditure class and selected analytical series index numbers*, seasonally adjusted, weighted average of eight capital cities. Australian Government.  
+- **Australian Bureau of Statistics. (2024, April 24)**. *Consumer price index, Australia – Table 13: Group, expenditure class and selected analytical series index numbers*, seasonally adjusted, weighted average of eight capital cities. Australian Government.  
   [https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/consumer-price-index-australia/latest-release](https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/consumer-price-index-australia/latest-release)
 
-- Australian Bureau of Statistics. (2024, April 24). *Monthly consumer price index indicator – Table 1: All groups, selected expenditure classes, Australia*; index numbers and percentage change from corresponding month of previous year, weighted average of eight capital cities. Australian Government.  
+- **Australian Bureau of Statistics. (2024, April 24)**. *Monthly consumer price index indicator – Table 1: All groups, selected expenditure classes, Australia*; index numbers and percentage change from corresponding month of previous year, weighted average of eight capital cities. Australian Government.  
   [https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/monthly-consumer-price-index-indicator/latest-release](https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/monthly-consumer-price-index-indicator/latest-release)
 
-- Australian Bureau of Statistics. (2024, April 26). *Producer price indexes – Table 21: Output of the transport, postal and warehousing industries, group and class index numbers*. Australian Government.  
+- **Australian Bureau of Statistics. (2024, April 26)**. *Producer price indexes – Table 21: Output of the transport, postal and warehousing industries, group and class index numbers*. Australian Government.  
   [https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/producer-price-indexes-australia/latest-release](https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/producer-price-indexes-australia/latest-release)
 
-- Australian Bureau of Statistics. (2024, April 26). *Producer price indexes – Table 12: Output of the manufacturing industries, division, subdivision, group and class index numbers*. Australian Government.  
+- **Australian Bureau of Statistics. (2024, April 26)**. *Producer price indexes – Table 12: Output of the manufacturing industries, division, subdivision, group and class index numbers*. Australian Government.  
   [https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/producer-price-indexes-australia/latest-release](https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/producer-price-indexes-australia/latest-release)
 
-- Australian Bureau of Statistics. (2024, May 2). *International trade in goods, Australia – Table 12b & Table 13b: Merchandise exports and imports, SITC (3-digit)*. Australian Government.  
+- **Australian Bureau of Statistics. (2024, May 2)**. *International trade in goods, Australia – Table 12b & Table 13b: Merchandise exports and imports, SITC (3-digit)*. Australian Government.  
   [https://www.abs.gov.au/statistics/economy/international-trade/international-trade-goods/latest-release](https://www.abs.gov.au/statistics/economy/international-trade/international-trade-goods/latest-release)
 
-- Bureau of Meteorology. (n.d.). *Climate data online*. Australian Government.  
+- **Bureau of Meteorology**. (n.d.). *Climate data online*. Australian Government.  
   [http://www.bom.gov.au/climate/data/](http://www.bom.gov.au/climate/data/)
 
-- Organisation for Economic Co-operation and Development. (2024). *Consumer price index (CPI), Australia, quarterly data (2020–2024)* [Data set]. OECD Data Explorer.  
+- **Organisation for Economic Co-operation and Development**. (2024). *Consumer price index (CPI), Australia, quarterly data (2020–2024)* [Data set]. OECD Data Explorer.  
   [https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_PRICES%40DF_PRICES_ALL&df[ag]=OECD.SDD.TPS&dq=AUS.Q..CPI....&pd=2020-01%2C2024-12&to[TIME_PERIOD]=false](https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_PRICES%40DF_PRICES_ALL&df[ag]=OECD.SDD.TPS&dq=AUS.Q..CPI....&pd=2020-01%2C2024-12&to[TIME_PERIOD]=false)
 
 :::
