@@ -147,7 +147,7 @@ ggplotly(p, tooltip = "text") %>%
   )
 ```
 
-Australia faced food inflation, but less severely than peers — with peaks of 11% versus global highs of 16%. While resilient, price rises still strained household budgets.
+Australia faced food inflation, but less severely than peers — with peaks of 11% versus global highs of 16%. While showing some resilience, price rises—double pre-pandemic levels—still strained household budgets and triggered widespread concern.
 ---
 
 <div class="custom-section-header">
@@ -370,7 +370,7 @@ subplot(p3, p4, nrows = 1, shareY = FALSE, titleX = TRUE, titleY = TRUE, margin 
   )
 
 ```
-Inflation hit unevenly — eggs, dairy, and oils spiked more than others. These category-specific pressures hint at underlying weaknesses in how food gets from farms to shelves.
+Inflation hit unevenly — eggs, dairy, and oils spiked more than others. These category-specific pressures hint at underlying weaknesses in how food gets from farms to shelves: dairy relies on energy and fuel, vegetables on climate stability, cereals on freight and logistics.
 ---
 
 <!-- 2 - Inflation Drivers -->
