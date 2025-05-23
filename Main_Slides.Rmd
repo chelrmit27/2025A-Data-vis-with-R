@@ -706,27 +706,26 @@ Australia’s food system remains exposed — from climate and input costs to la
 
 <div class="custom-section-header">
   <div class="circle">4</div>
-  <div class="section-title">Proposed Mitigations</div>
+  <div class="section-title">Proven Solutions from Abroad</div>
 </div>
 
 <section data-background-image="mitigation-bg.jpg" data-background-size="cover" data-background-position="center">
 
 <div class="overlay-text">
-  <h3>Climate-Smart Farming</h3>
-  <p>Turn research into resilience<br>
-  → Scale up climate tools with subsidies and field support.</p>
+  <h2> Australia can adapt these strategies — here’s how </h2>
+  
+  <h3>Ethiopia – Climate-Smart Farming 🌾</h3>
+  <p>Scaled up climate tools with subsidies → reduced price shocks</p>
 
-  <h3>Regional Food Hubs</h3>
-  <p>Build local buffers<br>
-  → Invest in regional hubs to reduce freight risk and rural delays.</p>
+  <h3>Canada – Regional Food Hubs 🏪</h3>
+  <p>Built local distribution centers → shortened supply chains</p>
 
-  <h3>Transparent Food Pricing</h3>
-  <p>Expose hidden markups<br>
-  → Strengthen ACCC to trace prices from farm to shelf.</p>
+  <h3>France – Transparent Food Pricing 🧾</h3>
+  <p>Traced markups from farm to shelf → improved pricing oversight</p>
 
-  <h3>Stable Seasonal Labor</h3>
-  <p>Protect farm work continuity<br>
-  → Co-fund income safety nets and fast-track harvest visas.</p>
+  <h3>New Zealand – Stable Farm Labor 👷</h3>
+  <p>Fast-tracked visas + wage support → secured seasonal workforce</p>
+  
 </div>
 </section>
 <!-- --- -->
