@@ -1,3 +1,6 @@
 [build]
-  command = "bash .netlify/install_quarto.sh && quarto render"
+  command = "quarto render"
   publish = "_site"
+
+[build.environment]
+  QUARTO_VERSION = "1.4.550"
